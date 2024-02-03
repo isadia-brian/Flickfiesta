@@ -2,26 +2,166 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer utilities {
+  @keyframes gradientChange {
+    0% {
+      background-position: 0%;
+    }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    50% {
+      background-position: 100%;
+    }
+
+    100% {
+      background-position: 0%;
+    }
+  }
+
+  .gradient {
+    background: linear-gradient(90deg, orange, orangered, red);
+    background-size: 200% 200%;
+  }
+
+  .element-to-rotate {
+    animation: gradientChange 4s ease infinite;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.embla {
+  height: 70vh;
+  overflow: hidden;
+  position: relative;
+  color: white;
+}
+
+.embla__viewport {
+  height: 100%;
+  overflow: hidden;
+}
+
+.embla__container {
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+
+.embla__slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+}
+
+.embla__slide1 {
+  display: flex;
+  gap: 10;
+  min-width: 0;
+  padding-left: 10px;
+  position: relative;
+}
+
+.embla__dot {
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.embla__dots {
+  z-index: 1;
+  bottom: 1.6rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.embla__dot {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
+}
+
+.embla__dot:after {
+  background: rgb(249, 249, 249);
+  border-radius: 0.2rem;
+  width: 100%;
+  height: 0.3rem;
+  content: "";
+}
+.embla__dot--selected:after {
+  background: linear-gradient(45deg, rgb(235, 117, 7), rgb(247, 7, 19));
+}
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.video-js {
+  height: 500px;
+  width: 100%;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.embla__slide__number {
+  width: 4.6rem;
+  height: 4.6rem;
+  z-index: 1;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  border-radius: 50%;
+  background-color: rgba(var(--background-site-rgb-value), 0.85);
+  line-height: 4.6rem;
+  font-weight: 900;
+  text-align: center;
+  pointer-events: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position: fixed;
+  background: white;
+  width: 1200px;
+  height: 70vh;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
 }
