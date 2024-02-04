@@ -1,32 +1,29 @@
 import MovieCard from "@/components/MovieCard";
 import type { Metadata } from "next";
 import Filter from "@/components/Filter";
-
+import PaginationNumbers from "@/components/PaginationNumbers";
+import { discoverMovies } from "@/helpers";
 export const metadata: Metadata = {
   title: "Movies - Playflix",
   description: "Free Movies & Tv Shows Online",
 };
 
-async function getMovies() {
-  const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&first_air_date.gte=2022-01-01&language=en-US&vote_count.gte=100&watch_region=US&language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`;
+const Movies = async ({
+  searchParams,
+}: {
+  searchParams?: { page?: string };
+}) => {
+  const page = Number(searchParams?.page) || 1;
 
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+  const media = "movies";
+  const data = await discoverMovies(page);
+  const pages = data.total_pages;
 
-  return res.json();
-}
-
-const Movies = async () => {
-  const media = "movie";
-  const newData = await getMovies();
-
-  const movies = newData.results;
+  const movies = data.results;
 
   return (
     <div className='relative bg-black/90'>
-      <div className='pt-24 relative max-w-[1200px] mx-auto'>
+      <div className='pt-24 relative max-w-[1200px] mx-auto pb-16'>
         <h1 className='text-white uppercase font-black text-2xl mb-12'>
           Movies
         </h1>
@@ -43,6 +40,9 @@ const Movies = async () => {
             );
           })}
         </ul>
+      </div>
+      <div className='flex items-center justify-center mt-10'>
+        <PaginationNumbers pages={pages} page={page} media={media} />
       </div>
     </div>
   );
