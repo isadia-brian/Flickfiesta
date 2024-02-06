@@ -15,7 +15,7 @@ const Movies = async ({
 }) => {
   const page = Number(searchParams?.page) || 1;
 
-  const media = "movies";
+  const media = "movie";
   const data = await discoverMovies(page);
   const pages = data.total_pages;
 

@@ -8,7 +8,7 @@ import { discoverTV } from "@/helpers";
 const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
   const page = Number(searchParams?.page) || 1;
 
-  const media = "series";
+  const media = "tv";
   const data = await discoverTV(page);
 
   const pages = data.total_pages;

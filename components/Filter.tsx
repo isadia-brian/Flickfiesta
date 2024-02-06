@@ -63,6 +63,7 @@ const Filter: React.FC<PropType> = (props) => {
         setDisabled(true);
         return;
       }
+
       setDisabled(false);
     };
     handleSearchChange();
@@ -98,7 +99,11 @@ const Filter: React.FC<PropType> = (props) => {
           <p className='text-[20px] font-bold mb-8'>Results</p>
           <div>
             <Suspense
-              fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
+              fallback={
+                <p style={{ textAlign: "center", color: "black" }}>
+                  Loading...
+                </p>
+              }>
               {data?.length <= 0 ? (
                 <>
                   <p>No Results Found</p>
