@@ -85,7 +85,7 @@ const Navbar = () => {
 
               <div
                 className={` py-4  rounded-full flex items-center justify-between relative ${
-                  scrolled ? "bg-black text-white" : "bg-white/85 text-black"
+                  scrolled ? "bg-black text-white" : "bg-white/65 text-black"
                 } ${searchPressed ? "min-w-[400px]" : ""}`}>
                 <nav>
                   <ul

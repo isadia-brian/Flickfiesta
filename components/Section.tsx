@@ -8,8 +8,7 @@ import {
   Heart,
   Eye,
   Flame,
-  Plus,
-  Play,
+  AlignHorizontalJustifyStart,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -23,6 +22,11 @@ const headerButtons = [
     icon: <TrendingUp className='h-4 w-4' />,
   },
   {
+    title: "Continue Watching",
+    link: "",
+    icon: <AlignHorizontalJustifyStart className='h-4 w-4' />,
+  },
+  {
     title: "Popular",
     link: "",
     icon: <Flame className='h-4 w-4' />,
@@ -31,11 +35,6 @@ const headerButtons = [
     title: "Favourites",
     link: "",
     icon: <Heart className='h-4 w-4' fill='#111' />,
-  },
-  {
-    title: "Recently Added",
-    link: "",
-    icon: <Plus className='h-4 w-4' />,
   },
 ];
 
@@ -138,7 +137,7 @@ const Section: React.FC<PropType> = (props) => {
           </div>
         ))}
       </div>
-      <div className='relative w-[1200px] mx-auto  flex items-center justify-between py-5'>
+      <div className='relative w-[1200px] mx-auto  flex items-center justify-between py-5 mb-5'>
         {filterButtons.map(({ genre, link }, index) => (
           <Button
             key={index}
@@ -150,6 +149,18 @@ const Section: React.FC<PropType> = (props) => {
           </Button>
         ))}
       </div>
+      <div className='w-full flex justify-end '>
+        <div className='flex items-center gap-[1px]'>
+          <ChevronLeft
+            onClick={() => scrollContainer(-1)}
+            className='h-6 w-6 text-white/65 hover:text-white transition-colors duration-300 cursor-pointer'
+          />
+          <ChevronRight
+            onClick={() => scrollContainer(+1)}
+            className='h-6 w-6 text-white/65 hover:text-white transition-colors duration-300 cursor-pointer'
+          />
+        </div>
+      </div>
       <div
         ref={scrollContainerRef}
         className='relative flex gap-5 py-4 w-full  overflow-x-scroll no-scrollbar z-10'>
@@ -159,14 +170,14 @@ const Section: React.FC<PropType> = (props) => {
 
           return (
             <div
-              className='group relative flex flex-col gap-2 cursor-pointer transition ease-in-out  hover:scale-110 hover:-translate-y-3 duration-300 hover:rounded-md '
+              className='group hover:z-50 relative flex flex-col gap-2 cursor-pointer transition ease-in-out  hover:scale-110  duration-300 hover:rounded-md '
               key={index}>
-              <div className='relative fill h-[280px] w-[190px] rounded-lg hover:rounded-md'>
+              <div className='group relative fill h-[280px] w-[190px] rounded-lg hover:rounded-md'>
                 <Image
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   fill
                   alt={movie.title}
-                  className='object-cover rounded-lg'
+                  className='group object-cover rounded-lg hover:rounded-md'
                   loading='lazy'
                 />
               </div>
@@ -194,20 +205,6 @@ const Section: React.FC<PropType> = (props) => {
           );
         })}
       </div>
-      <Button
-        onClick={() => scrollContainer(-1)}
-        variant='ghost'
-        size='icon'
-        className='h-20 w-20  bg-transparent hover:bg-transparent absolute top-1/2 z-50  left-1'>
-        <ChevronLeft className='h-20 w-20 text-slate-600 hover:text-white   transition-colors duration-300' />
-      </Button>
-      <Button
-        onClick={() => scrollContainer(+1)}
-        variant='ghost'
-        size='icon'
-        className='h-20 w-20 rounded-full bg-transparent hover:bg-transparent absolute top-1/2  right-1 z-50'>
-        <ChevronRight className='h-20 w-20 text-slate-600 hover:text-white transition-colors duration-300' />
-      </Button>
     </div>
   );
 };

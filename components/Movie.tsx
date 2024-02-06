@@ -9,27 +9,13 @@ import {
   Star,
   Heart,
   Eye,
-  ChevronDown,
   Baby,
+  Video,
 } from "lucide-react";
 import { Button } from "./ui/button";
-import { Slider } from "./ui/slider";
-
-import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
-
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-import { Checkbox } from "./ui/checkbox";
 
 import Image from "next/image";
 import Link from "next/link";
-
-type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 const headerButtons = [
   {
@@ -43,9 +29,9 @@ const headerButtons = [
     icon: <Film className='h-4 w-4' />,
   },
   {
-    title: "Continue Watching",
+    title: "Animation",
     link: "",
-    icon: <AlignHorizontalJustifyStart className='h-4 w-4' />,
+    icon: <Video className='h-4 w-4' />,
   },
   {
     title: "Kids",
@@ -103,22 +89,8 @@ const Movie = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
   const [movieList, setMovieList] = useState<MovieProps[]>([]);
 
-  const [showLatest, setShowLatest] = useState<Checked>(true);
-  const [showTopRated, setShowTopRated] = useState<Checked>(false);
-  const [showTrending, setShowTrending] = useState<Checked>(false);
-  const [checked, setChecked] = useState(false);
-
   const [activeCategoryIndex, setActiveCategoryIndex] = useState<number[]>([]);
   const [activeLabelIndex, setActiveLabelIndex] = useState<number[]>([]);
-
-  const handleChecked = (index: number) => {
-    setChecked(!checked);
-    setActiveLabelIndex((prevLabel) => {
-      return prevLabel.includes(index)
-        ? prevLabel.filter((i) => i !== index)
-        : [...prevLabel, index];
-    });
-  };
 
   const handleCategoryClicked = (index: number) => {
     setActiveCategoryIndex((prevIndices) => {
