@@ -42,7 +42,7 @@ const Movies = async ({
         </ul>
       </div>
       <div className='flex items-center justify-center mt-10'>
-        <PaginationNumbers pages={pages} page={page} media={media} />
+        <PaginationNumbers pages={pages} page={page} media='movies' />
       </div>
     </div>
   );

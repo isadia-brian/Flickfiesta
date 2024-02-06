@@ -7,12 +7,9 @@ import { discoverTV } from "@/helpers";
 
 const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
   const page = Number(searchParams?.page) || 1;
-
   const media = "tv";
   const data = await discoverTV(page);
-
   const pages = data.total_pages;
-
   const shows = data.results;
 
   return (
@@ -39,7 +36,7 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
         </Suspense>
       </div>
       <div className='flex items-center justify-center'>
-        <PaginationNumbers pages={pages} page={page} media={media} />
+        <PaginationNumbers pages={pages} page={page} media='series' />
       </div>
     </div>
   );
