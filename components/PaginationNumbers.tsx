@@ -11,8 +11,6 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-import { usePathname, useSearchParams } from "next/navigation";
-
 type Proptype = {
   pages?: number;
   page: number;

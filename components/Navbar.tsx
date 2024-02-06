@@ -21,8 +21,8 @@ const Links = [
     link: "/series",
   },
   {
-    title: "Anime",
-    link: "/favourites",
+    title: "Kids",
+    link: "/kids",
   },
 ];
 const Navbar = () => {

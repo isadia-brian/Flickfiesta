@@ -1,26 +1,39 @@
 import Filter from "@/components/Filter";
 import ListSkeleton from "@/components/ListSkeleton";
 import PaginationNumbers from "@/components/PaginationNumbers";
-import TVCard from "@/components/TVCard";
+import MovieCard from "@/components/MovieCard";
 import { Suspense } from "react";
-import { discoverTV } from "@/helpers";
+import { discoverAnimations, sortByVoteCount } from "@/helpers";
 
 const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
   const page = Number(searchParams?.page) || 1;
 
-  const media = "series";
-  const data = await discoverTV(page);
+  const media = "animation";
+  const data = await discoverAnimations(page);
+  const sortedData = await sortByVoteCount();
+  let allData = sortedData.results;
 
-  const pages = data.total_pages;
+  allData.sort((a, b) => {
+    return a.vote_average - b.vote_average;
+  });
 
-  const shows = data.results;
+  allData.sort((a, b) => {
+    let yearA = Number(a.release_date.substring(0, 4));
+    let yearB = Number(b.release_date.substring(0, 4));
+
+    return yearB - yearA;
+  });
+
+  //   allData.forEach((e) => {
+  //     console.log(`${e.original_title} ${e.vote_average}`);
+  //   });
+
+  const pages = data?.total_pages;
 
   return (
     <div className='relative bg-black/90 h-full pb-24'>
       <div className='pt-24 relative max-w-[1200px] mx-auto pb-16 '>
-        <h1 className='text-white uppercase font-black text-2xl mb-12'>
-          TV Shows
-        </h1>
+        <h1 className='text-white uppercase font-black text-2xl mb-12'>Kids</h1>
 
         <div className='mb-12'>
           <Filter media={media} />
@@ -28,10 +41,10 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
 
         <Suspense fallback={<ListSkeleton />}>
           <ul className='grid grid-cols-6 gap-6 text-white'>
-            {shows?.map((tv, index) => {
+            {allData?.map((movie, index) => {
               return (
                 <li key={index}>
-                  <TVCard tv={tv} hover={true} />
+                  <MovieCard movie={movie} hover={true} />
                 </li>
               );
             })}
