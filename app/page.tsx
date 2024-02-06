@@ -7,6 +7,7 @@ import Carousel from "@/components/Carousel";
 import Movie from "@/components/Movie";
 import Section from "@/components/Section";
 import RecommendedSection from "@/components/RecommendedSection";
+import Footer from "@/components/Footer";
 
 async function getMovies() {
   const url =
@@ -34,16 +35,19 @@ export default async function Home() {
   const movies = newData.results;
 
   return (
-    <main>
+    <main className='bg-black/90'>
       <div className='relative h-full'>
         <Navbar />
         <div className='relative'>
           <Carousel movies={movies} />
         </div>
-        <div className='relative bg-black/90 pb-20 '>
+        <div className='relative  pb-7 max-w-[1200px] mx-auto w-full '>
           <Section movies={movies} />
           <Movie />
           <RecommendedSection />
+          <div className='mt-20 w-full'>
+            <Footer />
+          </div>
         </div>
       </div>
     </main>

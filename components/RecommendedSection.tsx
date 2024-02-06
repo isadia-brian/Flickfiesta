@@ -6,7 +6,7 @@ import Link from "next/link";
 const RecommendedSection = async () => {
   const results = await getRecommendedContent();
   return (
-    <div className='w-[1200px] mx-auto my-12 text-white flex flex-col gap-10'>
+    <div className=' my-12 text-white flex flex-col gap-10'>
       <div className='h-[70px]  flex items-center  border-b-[0.5px] border-white/20 '>
         <h5 className='text-[20px] font-bold'>Recommended</h5>
       </div>

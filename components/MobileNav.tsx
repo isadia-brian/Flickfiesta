@@ -16,7 +16,7 @@ const MobileNav = ({ handleClick }) => {
           onClick={handleClick}>
           <X className='h-7 w-7' />
         </Button>
-        <p className='text-xl font-bold text-red-500'>PlayFlix</p>
+        <p className='text-xl font-bold text-red-500'>FlickFiesta</p>
         <UserAvatar />
       </div>
     </div>

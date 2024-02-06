@@ -187,7 +187,7 @@ const Movie = () => {
   }, []);
 
   return (
-    <div className='w-[1200px] mx-auto text-white'>
+    <div className=' text-white'>
       <div className='h-[70px]  flex items-center justify-between border-b-[0.5px] border-white/20 '>
         {headerButtons.map(({ title, link, icon }, index) => (
           <div

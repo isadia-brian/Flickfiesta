@@ -69,7 +69,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(true)}>
               <AlignLeft className='h-7 w-7' />
             </Button>
-            <p className='text-xl font-bold text-red-500'>PlayFlix</p>
+            <p className='text-xl font-bold text-red-500'>FlickFiesta</p>
             <UserAvatar />
           </div>
           <div
@@ -79,7 +79,7 @@ const Navbar = () => {
             <nav className='flex items-center justify-between w-[1200px] mx-auto'>
               <div>
                 <Link href='/' className='text-xl font-bold text-red-500'>
-                  PlayFlix
+                  FlickFiesta
                 </Link>
               </div>
 

@@ -120,7 +120,7 @@ const Section: React.FC<PropType> = (props) => {
   };
   return (
     <div className=' text-white mb-8 relative'>
-      <div className='w-[1200px] mx-auto relative py-5 flex items-center justify-between border-b-[0.5px] border-white/20 '>
+      <div className=' relative py-5 flex items-center justify-between border-b-[0.5px] border-white/20 '>
         {headerButtons.map(({ title, icon }, index) => (
           <div
             className='flex items-center gap-2 cursor-pointer'
