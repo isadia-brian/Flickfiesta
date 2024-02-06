@@ -19,7 +19,18 @@ const Movies = async ({
   const data = await discoverMovies(page);
   const pages = data.total_pages;
 
-  const movies = data.results;
+  let movies = data.results;
+
+  movies.sort((a, b) => {
+    return b.vote_average - a.vote_average;
+  });
+
+  movies.sort((a, b) => {
+    let yearA = Number(a.release_date.substring(0, 4));
+    let yearB = Number(b.release_date.substring(0, 4));
+
+    return yearB - yearA;
+  });
 
   return (
     <div className='relative bg-black/90'>

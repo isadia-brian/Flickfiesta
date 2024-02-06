@@ -21,7 +21,7 @@ type PropType = {
 
 const MovieCard: React.FC<PropType> = (props) => {
   const { movie, hover, dark } = props;
-
+  const votes = Math.round(movie.vote_average);
   const year = movie?.release_date.substring(0, 4);
 
   return (
@@ -52,9 +52,7 @@ const MovieCard: React.FC<PropType> = (props) => {
             <Eye className='h-[13px] w-[13px]' />
             <div className='flex items-center gap-1'>
               <Star className='h-[13px] w-[13px]' />
-              <p className='text-[11px] leading-4 text-white'>
-                {movie.vote_average}
-              </p>
+              <p className='text-[11px] leading-4 text-white'>{votes}</p>
             </div>
           </div>
         </div>

@@ -10,7 +10,18 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
   const media = "tv";
   const data = await discoverTV(page);
   const pages = data.total_pages;
-  const shows = data.results;
+  let shows = data.results;
+
+  shows.sort((a, b) => {
+    return b.vote_average - a.vote_average;
+  });
+
+  shows.sort((a, b) => {
+    let yearA = Number(a.first_air_date.substring(0, 4));
+    let yearB = Number(b.first_air_date.substring(0, 4));
+
+    return yearB - yearA;
+  });
 
   return (
     <div className='relative bg-black/90 h-full pb-24'>

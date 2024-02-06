@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 import {
   Clapperboard,
   Film,
-  AlignHorizontalJustifyStart,
   Star,
   Heart,
   Eye,
@@ -153,6 +152,8 @@ const Movie = () => {
       .then((json) => setMovieList(json.results))
       .catch((err) => console.error(`error: ${err}`));
   };
+
+  let sortedData;
 
   useEffect(() => {
     getMovies();

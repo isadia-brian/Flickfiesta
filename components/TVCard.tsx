@@ -21,6 +21,7 @@ type PropType = {
 
 const TVCard: React.FC<PropType> = (props) => {
   const { tv, hover, dark } = props;
+  const votes = Math.round(tv.vote_average);
 
   const year = tv?.first_air_date.substring(0, 4);
 
@@ -53,9 +54,7 @@ const TVCard: React.FC<PropType> = (props) => {
             <Eye className='h-[13px] w-[13px]' />
             <div className='flex items-center gap-1'>
               <Star className='h-[13px] w-[13px]' />
-              <p className='text-[11px] leading-4 text-white'>
-                {tv.vote_average}
-              </p>
+              <p className='text-[11px] leading-4 text-white'>{votes}</p>
             </div>
           </div>
         </div>
