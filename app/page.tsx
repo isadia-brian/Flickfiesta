@@ -1,9 +1,6 @@
 import * as React from "react";
-
 import Navbar from "@/components/Navbar";
-
 import Carousel from "@/components/Carousel";
-
 import Movie from "@/components/Movie";
 import Section from "@/components/Section";
 import RecommendedSection from "@/components/RecommendedSection";

@@ -7,7 +7,7 @@ import UserAvatar from "./UserAvatar";
 
 const MobileNav = ({ handleClick }) => {
   return (
-    <div className='h-screen w-screen bg-black py-5 px-4'>
+    <div className='h-screen w-screen  bg-black py-5 px-4'>
       <div className='flex items-center justify-between'>
         <Button
           variant='outline'

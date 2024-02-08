@@ -54,7 +54,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className={`bg-white`}>
+    <div
+      className={`bg-white md:bg-transparent w-full fixed top-0 z-50  ${
+        scrolled ? "bg-white text-black" : ""
+      }`}>
       {isOpen ? (
         <div className='md:hidden'>
           <MobileNav handleClick={handleClick} />
@@ -73,7 +76,7 @@ const Navbar = () => {
             <UserAvatar />
           </div>
           <div
-            className={`w-full transition-colors duration-150 fixed top-0 z-50 py-3 hidden md:flex md:px-10 lg:px-0 ${
+            className={`w-full transition-colors duration-150  py-3 hidden md:flex md:px-10 lg:px-0 ${
               scrolled ? "bg-white text-black" : "text-white"
             }`}>
             <nav className='flex items-center justify-between w-[1200px] mx-auto'>
