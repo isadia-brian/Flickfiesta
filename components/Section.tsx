@@ -17,12 +17,12 @@ import Image from "next/image";
 
 const headerButtons = [
   {
-    title: "Trends Now",
+    title: "Trending",
     link: "",
     icon: <TrendingUp className='h-4 w-4' />,
   },
   {
-    title: "Continue Watching",
+    title: "Watching",
     link: "",
     icon: <AlignHorizontalJustifyStart className='h-4 w-4' />,
   },
@@ -118,26 +118,26 @@ const Section: React.FC<PropType> = (props) => {
     }
   };
   return (
-    <div className=' text-white mb-8 relative'>
-      <div className=' relative py-5 flex items-center justify-between border-b-[0.5px] border-white/20 '>
+    <div className=' text-white mb-8 relative px-5 md:px-0'>
+      <div className='relative py-5 flex items-center gap-10 md:gap-0 justify-between border-b-[0.5px] border-white/20'>
         {headerButtons.map(({ title, icon }, index) => (
           <div
-            className='flex items-center gap-2 cursor-pointer'
+            className='flex items-center gap-2 cursor-pointer  w-full '
             onClick={() => handleButtonClick(index)}
             key={index}>
-            <p>{icon}</p>
-            <h1
+            <p className='hidden md:inline-block'>{icon}</p>
+            <p
               className={`text-[13px] transition-all duration-200 ${
                 index === activeButtonIndex
-                  ? "text-[20px] font-bold"
+                  ? "md:text-[20px] font-bold"
                   : "text-gray-300/50"
               }`}>
               {title}
-            </h1>
+            </p>
           </div>
         ))}
       </div>
-      <div className='relative w-[1200px] mx-auto  flex items-center justify-between py-5 mb-5'>
+      <div className='relative flex items-center gap-10 justify-between py-5 mb-5 overflow-x-scroll no-scrollbar'>
         {filterButtons.map(({ genre, link }, index) => (
           <Button
             key={index}
@@ -170,7 +170,7 @@ const Section: React.FC<PropType> = (props) => {
 
           return (
             <div
-              className='group hover:z-50 relative flex flex-col gap-2 cursor-pointer transition ease-in-out  hover:scale-110  duration-300 hover:rounded-md '
+              className='group md:hover:z-50 relative flex flex-col gap-2 cursor-pointer transition ease-in-out  md:hover:scale-110  duration-300 hover:rounded-md'
               key={index}>
               <div className='group relative fill h-[280px] w-[190px] rounded-lg hover:rounded-md'>
                 <Image

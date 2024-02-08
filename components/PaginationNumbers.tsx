@@ -1,10 +1,8 @@
 "use client";
-import { useState } from "react";
 
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -17,7 +15,7 @@ type Proptype = {
   media: string;
 };
 const PaginationNumbers: React.FC<Proptype> = (props) => {
-  const { pages, media, page } = props;
+  const { media } = props;
 
   return (
     <div className='text-white'>
@@ -26,7 +24,7 @@ const PaginationNumbers: React.FC<Proptype> = (props) => {
           <PaginationItem>
             <PaginationPrevious href='#' />
           </PaginationItem>
-          {Array.from({ length: 10 }).map((_, i) => (
+          {Array.from({ length: 5 }).map((_, i) => (
             <PaginationItem key={i}>
               <PaginationLink
                 href={{ pathname: `/${media}/`, query: { page: i + 1 } }}>

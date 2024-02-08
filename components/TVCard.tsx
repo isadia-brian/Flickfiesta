@@ -29,9 +29,11 @@ const TVCard: React.FC<PropType> = (props) => {
     <Link
       href={{ pathname: "/series/serie", query: { id: tv?.id } }}
       className={`group relative flex flex-col gap-2 cursor-pointer transition ease-in-out   duration-300  ${
-        hover ? "hover:scale-110 hover:-translate-y-3 hover:rounded-md" : ""
+        hover
+          ? "md:hover:scale-110 md:hover:-translate-y-3 hover:rounded-md"
+          : ""
       } `}>
-      <div className='relative fill h-[280px] w-[190px] rounded-lg hover:rounded-md'>
+      <div className='relative fill h-[240px] md:h-[280px] md:w-[190px] rounded-lg hover:rounded-md'>
         <Image
           src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
           fill

@@ -6,11 +6,11 @@ import Link from "next/link";
 const RecommendedSection = async () => {
   const results = await getRecommendedContent();
   return (
-    <div className=' my-12 text-white flex flex-col gap-10'>
+    <div className=' my-12 text-white flex flex-col gap-10 px-5 md:px-0'>
       <div className='h-[70px]  flex items-center  border-b-[0.5px] border-white/20 '>
         <h5 className='text-[20px] font-bold'>Recommended</h5>
       </div>
-      <div className='grid grid-cols-2  h-[400px] gap-3'>
+      <div className='grid grid-cols-1 md:grid-cols-2 h-[450px] md:h-[400px] gap-3'>
         {results.slice(0, 1).map((film, index) => {
           const title = film.name || film.title;
           const image = film.poster_path;
@@ -18,7 +18,7 @@ const RecommendedSection = async () => {
 
           return (
             <div
-              className='relative bg-white/70  flex flex-col px-7 py-4 justify-end rounded-2xl'
+              className='relative bg-white/70  flex flex-col md:px-7 py-4 justify-end rounded-2xl'
               key={index}>
               <div className='absolute left-0 h-full w-full bg-black rounded-2xl top-0'>
                 <div className='h-full w-full bg-black relative rounded-2xl'>
@@ -32,8 +32,8 @@ const RecommendedSection = async () => {
                 </div>
                 <div className='absolute h-full w-full top-0  rounded-2xl bg-gradient-to-t from-black/70 via-black/85' />
               </div>
-              <div className='flex w-[500px] mx-auto gap-5 items-center'>
-                <div className='h-[200px] bg-black w-[150px] shadow-md shadow-red-500/55 relative rounded-md'>
+              <div className='flex md:w-[500px] md:mx-auto px-4 gap-5 md:items-center'>
+                <div className='hidden md:flex h-[200px] bg-black w-[150px] shadow-md shadow-red-500/55 relative rounded-md'>
                   <Image
                     src={`https://image.tmdb.org/t/p/w500${image}`}
                     alt={title}
@@ -42,9 +42,9 @@ const RecommendedSection = async () => {
                     loading='lazy'
                   />
                 </div>
-                <div className='flex flex-col gap-6 z-50'>
+                <div className='flex flex-col gap-6 z-50 '>
                   <div className='flex flex-col gap-2'>
-                    <h5 className='font-semibold text-xl  max-w-[250px]'>
+                    <h5 className='font-semibold text-xl  md:max-w-[250px]'>
                       {title}
                     </h5>
 

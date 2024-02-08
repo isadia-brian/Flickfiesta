@@ -13,7 +13,6 @@ import {
   ChevronRightCircle,
   Bookmark,
   Play,
-  Heart,
 } from "lucide-react";
 
 type MovieProps = {
@@ -78,22 +77,22 @@ const Carousel: React.FC<PropType> = (props) => {
         <div className='embla__container'>
           {movies.slice(0, 5).map((movie, index) => (
             <div className='embla__slide' key={index}>
-              <div className='absolute h-full w-full z-50 flex flex-col gap-7 text-white justify-center ml-28'>
-                <h3 className='font-bold text-5xl max-w-[600px]'>
+              <div className='absolute h-full w-full z-50 flex flex-col gap-7 text-white justify-center md:ml-28 px-5 md:px-0'>
+                <h3 className='font-black text-3xl md:text-5xl md:max-w-[600px]'>
                   {movie.title}
                 </h3>
-                <p className='text-sm max-w-[600px] line-clamp-4'>
+                <p className='text-[12px] md:text-sm md:max-w-[600px] line-clamp-4'>
                   {movie.overview}
                 </p>
                 <div className='flex items-center gap-5'>
                   <Link
                     href={`/watch/`}
-                    className='flex items-center justify-center whitespace-nowrap w-[180px] h-9 px-4 rounded-none gap-2 py-6 bg-gradient-to-r from-orange-500 to-red-500 -skew-x-[30deg] text-sm font-medium transition-colors gradient element-to-rotate'>
+                    className='flex items-center justify-center whitespace-nowrap md:w-[180px] h-9 px-4 rounded-none gap-2  py-6 bg-gradient-to-r from-orange-500 to-red-500 -skew-x-[30deg] text-sm font-medium transition-colors gradient element-to-rotate'>
                     <Play className='h-4 w-4 skew-x-[30deg]' fill='white' />
                     <span className='skew-x-[30deg]'>WATCH NOW</span>
                   </Link>
 
-                  <Button className='flex items-center w-[180px] gap-2 py-6 bg-white/50 backdrop-filter backdrop-blur-sm -skew-x-[30deg] rounded-none text-black hover:bg-black hover:text-white'>
+                  <Button className='flex items-center md:w-[180px] gap-2  py-6 bg-white/50 backdrop-filter backdrop-blur-sm -skew-x-[30deg] rounded-none text-black hover:bg-black hover:text-white'>
                     <Bookmark
                       className='h-4 w-4 skew-x-[30deg]'
                       strokeWidth={3}
@@ -120,13 +119,13 @@ const Carousel: React.FC<PropType> = (props) => {
       </div>
 
       <button
-        className='embla__prev text-white absolute top-1/2 left-6 -translate-y-1/2'
+        className='invisible md:visible embla__prev text-white absolute top-1/2 left-6 -translate-y-1/2'
         onClick={scrollPrev}
         disabled={prevBtnDisabled}>
         <ChevronLeftCircle className='h-8 w-8 text-slate-500 hover:text-white transition-colors duration-300' />
       </button>
       <button
-        className='embla__next text-white absolute top-1/2 right-6 -translate-y-1/2'
+        className='invisible md:visible embla__next text-white absolute top-1/2 right-6 -translate-y-1/2'
         onClick={scrollNext}
         disabled={nextBtnDisabled}>
         <ChevronRightCircle className='h-8 w-8 text-slate-500 hover:text-white transition-colors duration-300' />

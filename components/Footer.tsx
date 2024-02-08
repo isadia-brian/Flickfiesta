@@ -21,19 +21,22 @@ const links = [
 
 const Footer = () => {
   return (
-    <div className='text-white w-full relative '>
-      <div className='border-[0.2px] border-white/20 h-[70px] border-r-0 border-l-0 grid grid-cols-3  items-center w-full justify-center mb-5'>
-        <div className=''>
-          <p className='font-bold'>FlickFiesta</p>
+    <div className='text-white w-full relative px-5 md:px-0 '>
+      <div className='border-[0.2px] border-white/20 md:h-[70px] border-r-0 border-l-0 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 py-5  md:items-center md:w-full md:justify-center mb-5'>
+        <div>
+          <p className='text-[20px] font-bold'>FlickFiesta</p>
         </div>
-        <div className='flex justify-between items-center px-3'>
+        <div className='flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between md:items-center md:px-3'>
           {links.map(({ title, link }, index) => (
-            <Link href={link} key={index} className='text-xs cursor-pointer'>
+            <Link
+              href={link}
+              key={index}
+              className='text-sm md:text-xs cursor-pointer'>
               {title}
             </Link>
           ))}
         </div>
-        <div className=' flex justify-end'>links</div>
+        <div className=' flex md:justify-end'>links</div>
       </div>
       <div className='w-full flex items-center justify-center'>
         <p className='text-xs'>

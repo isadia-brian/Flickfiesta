@@ -41,7 +41,7 @@ export default async function Home() {
         <div className='relative'>
           <Carousel movies={movies} />
         </div>
-        <div className='relative  pb-7 max-w-[1200px] mx-auto w-full '>
+        <div className='relative  pb-7 md:max-w-[1200px] mx-auto w-full '>
           <Section movies={movies} />
           <Movie />
           <RecommendedSection />

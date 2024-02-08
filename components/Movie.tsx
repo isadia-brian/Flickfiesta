@@ -153,25 +153,23 @@ const Movie = () => {
       .catch((err) => console.error(`error: ${err}`));
   };
 
-  let sortedData;
-
   useEffect(() => {
     getMovies();
   }, []);
 
   return (
-    <div className=' text-white'>
-      <div className='h-[70px]  flex items-center justify-between border-b-[0.5px] border-white/20 '>
+    <div className=' text-white px-5 md:px-0'>
+      <div className='h-[70px]  flex items-center justify-between gap-10 md:gap-0 border-b-[0.5px] border-white/20 '>
         {headerButtons.map(({ title, link, icon }, index) => (
           <div
             className='flex items-center gap-2 cursor-pointer'
             onClick={() => handleButtonClick(index)}
             key={index}>
-            <p>{icon}</p>
+            <p className='hidden md:inline-block'>{icon}</p>
             <h1
               className={`text-[13px] transition-all duration-200 ${
                 index === activeButtonIndex
-                  ? "text-[20px] font-bold"
+                  ? "md:text-[20px] font-bold"
                   : "text-gray-300/50"
               }`}>
               {title}
@@ -179,7 +177,7 @@ const Movie = () => {
           </div>
         ))}
       </div>
-      <div className='flex items-center justify-between py-4'>
+      <div className='flex items-center justify-between gap-10 py-4 overflow-x-scroll no-scrollbar'>
         {filterButtons.map(({ genre, link }, index) => (
           <Button
             key={index}
@@ -192,7 +190,7 @@ const Movie = () => {
         ))}
       </div>
 
-      <div className='grid grid-cols-6 gap-5 mt-12'>
+      <div className='flex gap-5 w-full overflow-x-scroll no-scrollbar z-10 md:grid grid-cols-6 gap-y-10 mt-12'>
         {movieList.slice(0, 12).map((movie, index) => {
           const dateString = movie.first_air_date || movie.release_date;
           const year = dateString?.substring(0, 4);
@@ -203,9 +201,9 @@ const Movie = () => {
                 pathname: "/movies/movie",
                 query: { id: movie?.id },
               }}
-              className='group relative flex flex-col gap-2 cursor-pointer transition ease-in-out  hover:scale-110 hover:-translate-y-3 duration-300 overflow-hidden '
+              className='group relative flex flex-col gap-2 cursor-pointer transition ease-in-out  md:hover:scale-110 md:hover:-translate-y-3 duration-300  '
               key={index}>
-              <div className='relative fill h-[280px] rounded-lg'>
+              <div className='relative fill w-[190px] h-[280px] rounded-lg'>
                 <Image
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   fill

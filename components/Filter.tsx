@@ -70,10 +70,10 @@ const Filter: React.FC<PropType> = (props) => {
   }, [search]);
 
   return (
-    <div className='relative'>
+    <div className='relative '>
       <div className='relative w-full border-b-[0.2px] border-zinc-700 pb-3 '>
         <div className='flex items-center gap-4'>
-          <div className=' px-3 py-2 flex items-center w-[300px] gap-3 rounded-md bg-zinc-600'>
+          <div className=' px-3 py-2 flex items-center md:w-[300px] gap-3 rounded-md bg-zinc-600'>
             <Search className='h-5 w-5' stroke='gray' />
             <input
               type='text'
@@ -143,11 +143,11 @@ const Filter: React.FC<PropType> = (props) => {
           </div>
         </FancyModal>
       </div>
-      <div className='w-full border-b-[0.5px] border-zinc-700 py-3 pb-5 flex items-center gap-3 '>
-        <div className='flex flex-col max-w-[150px] '>
+      <div className='w-full border-b-[0.5px] border-zinc-700 py-3 pb-5 flex flex-wrap items-center gap-x-4 gap-y-5 md:gap-3 '>
+        <div className='flex flex-col md:max-w-[150px] '>
           <p className='font-semibold text-sm text-white'>Year</p>
           <DropdownMenu>
-            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[130px] rounded-md'>
+            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[100px] md:w-[130px] rounded-md'>
               Any
               <ChevronDown className='h-4 w-4' />
             </DropdownMenuTrigger>
@@ -156,7 +156,7 @@ const Filter: React.FC<PropType> = (props) => {
         <div className='flex flex-col max-w-[150px] '>
           <p className='font-semibold text-sm text-white'>Country</p>
           <DropdownMenu>
-            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[130px] rounded-md'>
+            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[100px] md:w-[130px] rounded-md'>
               Any
               <ChevronDown className='h-4 w-4' />
             </DropdownMenuTrigger>
@@ -165,7 +165,7 @@ const Filter: React.FC<PropType> = (props) => {
         <div className='flex flex-col max-w-[150px] '>
           <p className='font-semibold text-sm text-white'>Genre</p>
           <DropdownMenu>
-            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[130px] rounded-md'>
+            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[100px] md:w-[130px] rounded-md'>
               Any
               <ChevronDown className='h-4 w-4' />
             </DropdownMenuTrigger>
@@ -174,7 +174,7 @@ const Filter: React.FC<PropType> = (props) => {
         <div className='flex flex-col max-w-[150px] '>
           <p className='font-semibold text-sm text-white'>Rating</p>
           <DropdownMenu>
-            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[130px] rounded-md'>
+            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[100px] md:w-[130px] rounded-md'>
               Any
               <ChevronDown className='h-4 w-4' />
             </DropdownMenuTrigger>
@@ -183,7 +183,7 @@ const Filter: React.FC<PropType> = (props) => {
         <div className='flex flex-col max-w-[150px] '>
           <p className='font-semibold text-sm text-white'>Quality</p>
           <DropdownMenu>
-            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[130px] rounded-md'>
+            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[100px] md:w-[130px] rounded-md'>
               Any
               <ChevronDown className='h-4 w-4' />
             </DropdownMenuTrigger>
@@ -192,7 +192,7 @@ const Filter: React.FC<PropType> = (props) => {
         <div className='flex flex-col max-w-[220px] '>
           <p className='font-semibold text-sm text-white'>Sort By</p>
           <DropdownMenu>
-            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[200px] rounded-md'>
+            <DropdownMenuTrigger className='bg-zinc-600 px-3 py-1  text-gray-400 flex justify-between items-center w-[200px] md:w-[200px] rounded-md'>
               Recently Updated
               <ChevronDown className='h-4 w-4' />
             </DropdownMenuTrigger>
@@ -200,7 +200,7 @@ const Filter: React.FC<PropType> = (props) => {
         </div>
         <div className='flex flex-col max-w-[220px] '>
           <p className='font-semibold text-sm invisible'>Sort By</p>
-          <Button className='flex items-center justify-between w-[100px] bg-gradient-to-r from-orange-500 to-red-500  h-[35px]'>
+          <Button className='flex items-center justify-between w-[100px] bg-gradient-to-r from-orange-500 to-red-500  h-[32px]'>
             <FilterIcon className='h-3 w-4' />
             <p>Filter</p>
           </Button>
