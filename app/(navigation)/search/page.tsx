@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { Search } from "lucide-react";
 import Link from "next/link";
@@ -10,7 +10,7 @@ const SearchMovie = () => {
   const [searched, setSearched] = useState("");
   const [filmList, setFilmList] = useState([]);
 
-  const searchedFilm = async () => {
+  const searchedFilm = useCallback(async () => {
     try {
       const res = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${searched}`,
@@ -28,11 +28,11 @@ const SearchMovie = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [searched]);
 
   useEffect(() => {
-    searchedFilm;
-  }, [searched]);
+    searchedFilm();
+  }, [searched, searchedFilm]);
 
   return (
     <div className='pt-16'>
@@ -50,6 +50,7 @@ const SearchMovie = () => {
         <div className='grid grid-cols-6 gap-5 mt-12'>
           {filmList.map((film, i) => (
             <Link
+              key={i}
               href={{
                 pathname: "/movies/movie",
                 query: { id: film?.id },
