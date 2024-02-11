@@ -38,7 +38,7 @@ const Video = (props) => {
         playerRef.current = null;
       }
     };
-  }, [playerRef]);
+  }, [playerRef, onReady]);
   return (
     <div data-vjs-player>
       <div ref={videoRef} />

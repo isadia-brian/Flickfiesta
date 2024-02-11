@@ -113,26 +113,16 @@ const Filter: React.FC<PropType> = (props) => {
                   {media === "tv" ? (
                     <div className='grid grid-cols-6 gap-y-8 gap-x-4'>
                       {data?.map((tv, index) => (
-                        <div>
-                          <TVCard
-                            tv={tv}
-                            key={index}
-                            hover={false}
-                            dark={true}
-                          />
+                        <div key={index}>
+                          <TVCard tv={tv} hover={false} dark={true} />
                         </div>
                       ))}
                     </div>
                   ) : (
                     <div className='grid grid-cols-6 gap-y-8 gap-x-4'>
                       {data?.map((movie, index) => (
-                        <div>
-                          <MovieCard
-                            movie={movie}
-                            key={index}
-                            hover={false}
-                            dark={true}
-                          />
+                        <div key={index}>
+                          <MovieCard movie={movie} hover={false} dark={true} />
                         </div>
                       ))}
                     </div>
