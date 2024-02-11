@@ -28,7 +28,7 @@ const Video = (props) => {
       player.autoplay(options.autoplay);
       player.src(options.sources);
     }
-  }, [options, videoRef]);
+  }, [options, videoRef, onReady]);
 
   useEffect(() => {
     const player = playerRef.current;
@@ -38,7 +38,7 @@ const Video = (props) => {
         playerRef.current = null;
       }
     };
-  }, [playerRef, onReady]);
+  }, [playerRef]);
   return (
     <div data-vjs-player>
       <div ref={videoRef} />

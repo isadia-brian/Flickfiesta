@@ -31,8 +31,8 @@ const SearchMovie = () => {
   };
 
   useEffect(() => {
-    searchedFilm();
-  }, [searched, searchedFilm]);
+    searchedFilm;
+  }, [searched]);
 
   return (
     <div className='pt-16'>
