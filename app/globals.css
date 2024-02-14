@@ -109,6 +109,20 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #b1b1b1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f83200;
+}
+
 /* Hide scrollbar for Chrome, Safari, and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

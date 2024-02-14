@@ -34,16 +34,20 @@ const UserAvatar = () => {
         asChild
         className='bg-transparent outline-none focus:bg-transparent relative'>
         <Button
+          type='button'
           size='icon'
-          className='outline-none bg-transparent focus-visible:ring-0'
+          className='outline-none bg-transparent focus-visible:ring-0 cursor-pointer'
           title='user'>
           <Avatar>
-            <AvatarImage src='https://github.com/shadcn.png' />
+            <AvatarImage
+              src='https://github.com/shadcn.png'
+              className='cursor-pointer'
+            />
             <AvatarFallback>BL</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-56'>
+      <DropdownMenuContent className='w-[200px] md:w-[230px] md:mr-4 mt-[13px]'>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
@@ -97,7 +101,7 @@ const UserAvatar = () => {
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <LogOut className='mr-2 h-4 w-4' />
-          <span>Log out</span>
+          <span>Sign In</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
