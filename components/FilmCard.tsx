@@ -36,7 +36,7 @@ const FilmCard = (props) => {
 
             <div className='flex items-center gap-1'>
               <Star className='h-[13px] w-[13px]' fill='yellow' />
-              <p className='text-[12px] leading-4 text-white'>{vote_average}</p>
+              <p className='text-[11px] leading-4 text-white'>{vote_average}</p>
             </div>
           </div>
         </div>

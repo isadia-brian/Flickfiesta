@@ -1,19 +1,16 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import {
   TrendingUp,
-  Star,
   Heart,
-  Eye,
   Flame,
   AlignHorizontalJustifyStart,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { Button } from "./ui/button";
-import Image from "next/image";
+
 import FilmCard from "./FilmCard";
 
 const headerButtons = [
@@ -39,41 +36,6 @@ const headerButtons = [
   },
 ];
 
-const filterButtons = [
-  {
-    genre: "Action",
-    link: "",
-  },
-  {
-    genre: "Adventure",
-    link: "",
-  },
-  {
-    genre: "Animation",
-    link: "",
-  },
-  {
-    genre: "Biography",
-    link: "",
-  },
-  {
-    genre: "Crime",
-    link: "",
-  },
-  {
-    genre: "Comedy",
-    link: "",
-  },
-  {
-    genre: "Documentary",
-    link: "",
-  },
-  {
-    genre: "Drama",
-    link: "",
-  },
-];
-
 interface DataItem {
   media: "Movie" | "TV";
   title?: string;
@@ -84,27 +46,52 @@ interface DataItem {
   id: number;
   link: string;
   year: number;
+  filterCategory: "Trending" | "Popular";
 }
 
 type PropType = {
   trendingFilm: DataItem[];
 };
 
+const useFilter = (data: DataItem[], filter: string) => {
+  const [filteredData, setFilteredData] = useState<DataItem[]>(data);
+
+  useEffect(() => {
+    // If the filter is "Trending" return the original data
+
+    if (filter === "Trending") {
+      setFilteredData(data.filter((item) => item.filterCategory === filter));
+    } else {
+      //Other wise filter the data by type
+      setFilteredData(data.filter((item) => item.filterCategory === filter));
+    }
+  }, [data, filter]); //Update filtered data when the data or filter changes
+
+  return filteredData;
+};
+
 const Section: React.FC<PropType> = (props) => {
   const { trendingFilm } = props;
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
-  const [activeCategoryIndex, setActiveCategoryIndex] = useState<number[]>([]);
+  const [filter, setFilter] = useState<string>("Trending");
 
-  const handleButtonClick = (index: number) => {
+  const [data, setData] = useState<DataItem[]>(trendingFilm);
+
+  // The filtered data that is returned by the custom hook
+  const filteredData = useFilter(data, filter);
+
+  const handleFilter = (index: number) => {
     setActiveButtonIndex(index);
-  };
 
-  const handleCategoryClicked = (index: number) => {
-    setActiveCategoryIndex((prevIndices) => {
-      return prevIndices.includes(index)
-        ? prevIndices.filter((i) => i !== index)
-        : [...prevIndices, index];
-    });
+    if (index === 0) {
+      setFilter("Trending");
+    } else if (index === 1) {
+      setFilter("Trending");
+    } else if (index === 2) {
+      setFilter("Popular");
+    } else {
+      setFilter("Trending");
+    }
   };
 
   const scrollContainerRef = useRef(null);
@@ -112,7 +99,7 @@ const Section: React.FC<PropType> = (props) => {
   const scrollContainer = (direction) => {
     const container = scrollContainerRef.current;
     if (container) {
-      const scrollAmount = 320; // Adjust the scroll amount as needed
+      const scrollAmount = 450; // Adjust the scroll amount as needed
       const scrollPosition = container.scrollLeft + direction * scrollAmount;
 
       container.scrollTo({
@@ -122,12 +109,12 @@ const Section: React.FC<PropType> = (props) => {
     }
   };
   return (
-    <div className=' text-white mb-8 relative px-5 md:px-0'>
+    <div className=' text-white mb-8 relative px-5 md:px-0  w-full'>
       <div className='relative pt-8 pb-5 flex items-center gap-10 md:gap-0 justify-between border-b-[0.5px] border-white/20'>
         {headerButtons.map(({ title, icon }, index) => (
           <div
-            className='flex items-center gap-2 cursor-pointer  w-full '
-            onClick={() => handleButtonClick(index)}
+            className='flex items-center gap-2 cursor-pointer  w-full md:w-max '
+            onClick={() => handleFilter(index)}
             key={index}>
             <p className='hidden md:inline-block'>{icon}</p>
             <p
@@ -156,9 +143,9 @@ const Section: React.FC<PropType> = (props) => {
       </div>
       <div
         ref={scrollContainerRef}
-        className='relative flex gap-5 pt-5 pb-4 w-full  overflow-x-scroll no-scrollbar z-10'>
-        {trendingFilm?.map((film, index) => {
-          return <FilmCard film={film} dark={true} />;
+        className=' flex gap-4 pt-5 pb-4 w-full  overflow-x-scroll no-scrollbar'>
+        {filteredData?.map((film, index) => {
+          return <FilmCard film={film} dark={true} key={index} />;
         })}
       </div>
     </div>

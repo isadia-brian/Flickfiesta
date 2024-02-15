@@ -5,14 +5,12 @@ import Section from "@/components/Section";
 import RecommendedSection from "@/components/RecommendedSection";
 import Footer from "@/components/Footer";
 import {
-  getPopularFilm,
   getRecommendedContent,
   getTrendingData,
   getTrendingFilm,
 } from "@/helpers";
 
 export default async function Home() {
-  const popularFilm = await getPopularFilm();
   const trending = await getTrendingData();
   const trendingFilm = await getTrendingFilm();
   const recommendedFilm = await getRecommendedContent();

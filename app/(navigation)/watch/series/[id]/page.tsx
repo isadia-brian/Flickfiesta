@@ -1,20 +1,14 @@
-"use client";
-
-import React, { useRef } from "react";
-import videojs from "video.js";
-
 const Watch = ({ params }: { params: { id: number } }) => {
   const videoId = params.id;
 
   return (
-    <div className='mt-24'>
+    <div className='h-screen flex items-center justify-center md:w-[1200px] mx-auto px-4 md:px-0'>
       <iframe
-        className='h-[100vh] w-full'
+        className='h-[250px] md:h-[650px] w-full'
         src={`https://vidsrc.to/embed/tv/${videoId}?autoplay=1&muted=1`}
-        title='Iframe Example'
         allow='autoplay; fullscreen'
         allowFullScreen
-        referrerPolicy='origin'></iframe>
+        referrerPolicy='no-referrer'></iframe>
     </div>
   );
 };

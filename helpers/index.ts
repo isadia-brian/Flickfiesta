@@ -180,7 +180,7 @@ export const getPopularFilm = async () => {
     )
       .then((res) => res.json())
       .then((json) => json.results);
-    const topMovies = movies.slice(0, 12);
+    const topMovies = movies.slice(0, 6);
 
     const moviesWithLinks = topMovies?.map((movie) => {
       const convertedYear = Number(movie.release_date.substring(0, 4));
@@ -190,6 +190,7 @@ export const getPopularFilm = async () => {
         link: `/movies/movie`,
         media: "Movie",
         year: convertedYear,
+        filterCategory: "Popular",
       };
     });
 
@@ -210,6 +211,7 @@ export const getPopularFilm = async () => {
         link: `/series/serie`,
         media: "TV",
         year: convertedYear,
+        filterCategory: "Popular",
       };
     });
 
@@ -223,6 +225,7 @@ export const getPopularFilm = async () => {
 export const getTrendingFilm = async () => {
   let results = [];
   try {
+    //getTrendingFilm
     const url = `https://api.themoviedb.org/3/trending/all/week?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`;
 
     const response = await fetch(url)
@@ -258,11 +261,30 @@ export const getTrendingFilm = async () => {
         poster_path: item.poster_path,
         year: year,
         vote_average: item.vote_average,
+        filterCategory: "Trending",
       };
     });
 
     results.push(...modifiedTrending);
 
+    //getPopularFilm
+
+    const popularFilm = await getPopularFilm();
+    const modifiedPopular = popularFilm.map((item) => {
+      return {
+        title: item.title || item.name,
+        backdrop_path: item.backdrop_path,
+        link: item.link,
+        id: item.id,
+        overview: item.overview,
+        poster_path: item.poster_path,
+        year: item.year,
+        vote_average: item.vote_average,
+        filterCategory: item.filterCategory,
+      };
+    });
+
+    results.push(...modifiedPopular);
     return results;
   } catch (error) {
     console.error("error:", error);
