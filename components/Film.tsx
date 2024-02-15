@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Clapperboard, Film as Series, Baby, Video } from "lucide-react";
 import { Button } from "./ui/button";
 import { getPopularFilm } from "@/helpers";
-import Link from "next/link";
+
 import FilmCard from "./FilmCard";
 
 const headerButtons = [

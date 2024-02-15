@@ -46,7 +46,7 @@ const poppins = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "PlayFlix",
+  title: "FilmFiesta",
   description: "Free Movies & Tv Shows Online",
 };
 

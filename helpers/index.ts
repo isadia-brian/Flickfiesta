@@ -97,12 +97,14 @@ export const getSingleTV = async (id: number) => {
 };
 
 export const getSingleMovie = async (id: number) => {
-  const returnedMovie = await getMovieData();
-  const item = returnedMovie.results;
+  try {
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`;
+    const response = await fetch(url).then((res) => res.json());
 
-  const singleMovie = await item.find((movie: any) => movie.id === id);
-
-  return singleMovie;
+    return response;
+  } catch (error) {
+    throw new Error("Failed to fetch data");
+  }
 };
 
 export const getVideoData = async (id: number) => {
@@ -135,8 +137,15 @@ export const getRecommendedContent = async () => {
     )
       .then((res) => res.json())
       .then((json) => json.results);
-    const topFiveMovies = movies.slice(0, 2);
-    results.push(...topFiveMovies);
+    const topMovies = movies.slice(0, 2);
+
+    const moviesWithLinks = topMovies?.map((movie) => {
+      return {
+        ...movie,
+        link: `/movies/movie`,
+      };
+    });
+    results.push(...moviesWithLinks);
 
     //series
     const series = await fetch(
@@ -144,9 +153,15 @@ export const getRecommendedContent = async () => {
     )
       .then((res) => res.json())
       .then((json) => json.results);
-    const topFiveShows = series.slice(0, 3);
+    const topShows = series.slice(0, 3);
+    const showsWithLinks = topShows?.map((show) => {
+      return {
+        ...show,
+        link: `/series/serie`,
+      };
+    });
 
-    results.push(...topFiveShows);
+    results.push(...showsWithLinks);
 
     results.sort(() => Math.random() - 0.5);
     return results;
@@ -157,7 +172,7 @@ export const getRecommendedContent = async () => {
 
 export const getPopularFilm = async () => {
   let results: any[] = [];
-  let baseUrl: string = "/";
+
   try {
     //getPopularMovies
     const movies = await fetch(
@@ -172,7 +187,7 @@ export const getPopularFilm = async () => {
 
       return {
         ...movie,
-        link: `${baseUrl}movies/movie`,
+        link: `/movies/movie`,
         media: "Movie",
         year: convertedYear,
       };
@@ -192,7 +207,7 @@ export const getPopularFilm = async () => {
       const convertedYear = Number(show.first_air_date.substring(0, 4));
       return {
         ...show,
-        link: `${baseUrl}series/serie`,
+        link: `/series/serie`,
         media: "TV",
         year: convertedYear,
       };
@@ -202,5 +217,54 @@ export const getPopularFilm = async () => {
     return results;
   } catch (error) {
     console.error("error", error);
+  }
+};
+
+export const getTrendingFilm = async () => {
+  let results = [];
+  try {
+    const url = `https://api.themoviedb.org/3/trending/all/week?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`;
+
+    const response = await fetch(url)
+      .then((res) => res.json())
+      .then((json) => json.results);
+
+    const trending = response.slice(0, 12);
+
+    const modifiedTrending = trending.map((item) => {
+      const returnedYear = item.first_air_date || item.release_date;
+      const year = Number(returnedYear.substring(0, 4));
+
+      let link;
+      switch (item.media_type) {
+        case "tv":
+          link = `/series/serie`;
+          break;
+
+        case "movie":
+          link = `/movies/movie`;
+          break;
+
+        default:
+          break;
+      }
+
+      return {
+        title: item.title || item.name,
+        backdrop_path: item.backdrop_path,
+        link: link,
+        id: item.id,
+        overview: item.overview,
+        poster_path: item.poster_path,
+        year: year,
+        vote_average: item.vote_average,
+      };
+    });
+
+    results.push(...modifiedTrending);
+
+    return results;
+  } catch (error) {
+    console.error("error:", error);
   }
 };
