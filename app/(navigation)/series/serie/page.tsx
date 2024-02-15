@@ -1,8 +1,7 @@
 import VideoSlide from "@/components/VideoSlide";
 import { Button } from "@/components/ui/button";
 import { getSingleTV } from "@/helpers";
-
-import { Play, Bookmark, Star, Youtube as Tube } from "lucide-react";
+import { Play, Star, Youtube as Tube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -19,7 +18,7 @@ const TVShow = async ({ searchParams }: Props) => {
   const tvShow = await getSingleTV(id);
 
   let rating = Math.round(tvShow?.vote_average * 10) / 10;
-  const releaseDateString = tvShow?.release_date;
+  const year = tvShow?.first_air_date.substring(0, 4);
 
   return (
     <div className='relative'>
@@ -61,7 +60,7 @@ const TVShow = async ({ searchParams }: Props) => {
                 </div>
                 <div className='flex items-center gap-2'>
                   <div className='h-1 w-1 bg-red-500/65 rounded-full' />
-                  <p className='text-[12px]'>2023</p>
+                  <p className='text-[12px]'>{year}</p>
                 </div>
                 <div className='flex items-center gap-2'></div>
               </div>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Filter from "@/components/Filter";
 import ListSkeleton from "@/components/ListSkeleton";
 import PaginationNumbers from "@/components/PaginationNumbers";
@@ -5,6 +6,11 @@ import MovieCard from "@/components/MovieCard";
 import { Suspense } from "react";
 import { discoverAnimations, sortByVoteCount } from "@/helpers";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Watch The Latest Kids Movies & TV Online - Free",
+  description: "Free Movies & Tv Shows Online",
+};
 
 const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
   const page = Number(searchParams?.page) || 1;

@@ -1,3 +1,48 @@
+export const getTrendingData = async () => {
+  let results = [];
+  try {
+    const url = `https://api.themoviedb.org/3/trending/all/week?language=en-US&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`;
+
+    const response = await fetch(url)
+      .then((res) => res.json())
+      .then((json) => json.results);
+
+    const trending = response.slice(0, 6);
+
+    const modifiedTrending = trending.map((item) => {
+      let baseUrl = "/";
+      let link;
+      switch (item.media_type) {
+        case "tv":
+          link = `${baseUrl}series/serie`;
+          break;
+
+        case "movie":
+          link = `${baseUrl}movies/movie`;
+          break;
+
+        default:
+          break;
+      }
+
+      return {
+        title: item.title || item.name,
+        backdrop_path: item.backdrop_path,
+        link: link,
+        id: item.id,
+        overview: item.overview,
+      };
+    });
+
+    results.push(...modifiedTrending);
+    results.sort(() => Math.random() - 0.9);
+
+    return results;
+  } catch (error) {
+    console.error("error:", error);
+  }
+};
+
 const getMovieData = async () => {
   const res = await fetch(
     "https://api.themoviedb.org/3/movie/popular?include_adult=true&api_key=d8bfacf62ba3f83b7f46230a2fb38e91"
@@ -107,5 +152,55 @@ export const getRecommendedContent = async () => {
     return results;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getPopularFilm = async () => {
+  let results: any[] = [];
+  let baseUrl: string = "/";
+  try {
+    //getPopularMovies
+    const movies = await fetch(
+      `https://api.themoviedb.org/3/movie/popular?include_adult=true&include_video=true&language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`
+    )
+      .then((res) => res.json())
+      .then((json) => json.results);
+    const topMovies = movies.slice(0, 12);
+
+    const moviesWithLinks = topMovies?.map((movie) => {
+      const convertedYear = Number(movie.release_date.substring(0, 4));
+
+      return {
+        ...movie,
+        link: `${baseUrl}movies/movie`,
+        media: "Movie",
+        year: convertedYear,
+      };
+    });
+
+    results.push(...moviesWithLinks);
+
+    //series
+    const shows = await fetch(
+      `https://api.themoviedb.org/3/discover/tv?sort_by=popularity.desc&first_air_date.gte=2022-01-01&language=en-US&vote_count.gte=100&watch_region=US&language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`
+    )
+      .then((res) => res.json())
+      .then((json) => json.results);
+    const topShows = shows.slice(0, 12);
+
+    const showsWithLinks = topShows?.map((show) => {
+      const convertedYear = Number(show.first_air_date.substring(0, 4));
+      return {
+        ...show,
+        link: `${baseUrl}series/serie`,
+        media: "TV",
+        year: convertedYear,
+      };
+    });
+
+    results.push(...showsWithLinks);
+    return results;
+  } catch (error) {
+    console.error("error", error);
   }
 };

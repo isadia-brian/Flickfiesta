@@ -1,10 +1,10 @@
-import * as React from "react";
 import Navbar from "@/components/Navbar";
 import Carousel from "@/components/Carousel";
-import Movie from "@/components/Movie";
+import Film from "@/components/Film";
 import Section from "@/components/Section";
 import RecommendedSection from "@/components/RecommendedSection";
 import Footer from "@/components/Footer";
+import { getPopularFilm, getTrendingData } from "@/helpers";
 
 async function getMovies() {
   const url =
@@ -30,17 +30,19 @@ async function getMovies() {
 export default async function Home() {
   const newData = await getMovies();
   const movies = newData.results;
+  const popularFilm = await getPopularFilm();
+  const trending = await getTrendingData();
 
   return (
     <main className='bg-black/90'>
       <div className='relative h-full'>
         <Navbar />
         <div className='relative'>
-          <Carousel movies={movies} />
+          <Carousel trending={trending} />
         </div>
-        <div className='relative  pb-7 md:max-w-[1200px] mx-auto w-full '>
+        <div className='relative pb-7 w-full md:w-[1200px] mx-auto'>
           <Section movies={movies} />
-          <Movie />
+          <Film />
           <RecommendedSection />
           <div className='mt-20 w-full'>
             <Footer />

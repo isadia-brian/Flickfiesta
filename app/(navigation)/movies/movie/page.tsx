@@ -2,7 +2,7 @@ import VideoSlide from "@/components/VideoSlide";
 import { Button } from "@/components/ui/button";
 import { getSingleMovie, getVideoData } from "@/helpers";
 
-import { Play, Bookmark, Star, Youtube as Tube } from "lucide-react";
+import { Play, Star, Youtube as Tube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -19,7 +19,7 @@ const Movie = async ({ searchParams }: Props) => {
   const movie = await getSingleMovie(id);
 
   let rating = Math.round(movie?.vote_average * 10) / 10;
-  const releaseDateString = movie?.release_date;
+  const year = movie?.release_date.substring(0, 4);
 
   return (
     <div className='relative'>
@@ -61,7 +61,7 @@ const Movie = async ({ searchParams }: Props) => {
                 </div>
                 <div className='flex items-center gap-2'>
                   <div className='h-1 w-1 bg-red-500/65 rounded-full' />
-                  <p className='text-[12px]'>2023</p>
+                  <p className='text-[12px]'>{year}</p>
                 </div>
                 <div className='flex items-center gap-2'></div>
               </div>
@@ -104,8 +104,8 @@ const Movie = async ({ searchParams }: Props) => {
           </div>
         </div>
       </div>
-      <div className='text-black relative'>
-        <h1>Hello</h1>
+      <div className='text-black relative px-4 md:px-10 py-8'>
+        <h5 className='font-semibold text-2xl'>Cast</h5>
       </div>
     </div>
   );

@@ -8,43 +8,28 @@ import { DotButton } from "./CarouselDots";
 import AutoPlay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import {
-  ChevronLeftCircle,
-  ChevronRightCircle,
-  Bookmark,
-  Play,
-} from "lucide-react";
+import { Bookmark, Play } from "lucide-react";
 
-type MovieProps = {
+interface TrendingItem {
+  id: number;
   title: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: number;
   overview: string;
   backdrop_path: string;
-};
+  link: string;
+}
 
 type PropType = {
-  movies: MovieProps[];
+  trending: TrendingItem[];
 };
 
 const Carousel: React.FC<PropType> = (props) => {
-  const { movies } = props;
+  const { trending } = props;
 
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false }, [
     AutoPlay({ delay: 6000 }),
   ]);
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
 
   const scrollTo = useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
@@ -57,8 +42,6 @@ const Carousel: React.FC<PropType> = (props) => {
 
   const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
     setSelectedIndex(emblaApi.selectedScrollSnap());
-    setPrevBtnDisabled(!emblaApi.canScrollPrev());
-    setNextBtnDisabled(!emblaApi.canScrollNext());
   }, []);
 
   useEffect(() => {
@@ -75,18 +58,18 @@ const Carousel: React.FC<PropType> = (props) => {
     <div className='embla relative'>
       <div className='embla__viewport' ref={emblaRef}>
         <div className='embla__container'>
-          {movies.slice(0, 5).map((movie, index) => (
+          {trending?.map((item, index) => (
             <div className='embla__slide' key={index}>
               <div className='absolute h-full w-full z-50 flex flex-col gap-7 text-white justify-center md:ml-10 px-5 md:px-0'>
                 <h3 className='font-black text-3xl md:text-6xl md:max-w-[600px]'>
-                  {movie.title}
+                  {item.title}
                 </h3>
                 <p className='text-[12px] md:text-sm md:w-[500px] line-clamp-4'>
-                  {movie.overview}
+                  {item.overview}
                 </p>
                 <div className='flex items-center gap-3 px-2'>
                   <Link
-                    href={`/watch/`}
+                    href={{ pathname: item.link, query: { id: item.id } }}
                     className='flex items-center justify-center whitespace-nowrap md:w-[150px] h-9 px-4 rounded-none gap-2  py-6 bg-gradient-to-r from-orange-500 to-red-500 -skew-x-[30deg] text-sm font-medium transition-colors gradient element-to-rotate'>
                     <Play className='h-4 w-4 skew-x-[30deg]' fill='white' />
                     <span className='skew-x-[30deg]'>WATCH NOW</span>
@@ -105,9 +88,9 @@ const Carousel: React.FC<PropType> = (props) => {
               <div className='absolute top-0 left-0 h-full w-full z-20'>
                 <div className='relative h-full w-full'>
                   <Image
-                    src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+                    src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
                     fill
-                    alt={movie.title}
+                    alt={item.title}
                     className='object-cover'
                     priority
                   />
@@ -117,19 +100,6 @@ const Carousel: React.FC<PropType> = (props) => {
           ))}
         </div>
       </div>
-
-      {/* <button
-        className='invisible md:visible embla__prev text-white absolute top-1/2 left-6 -translate-y-1/2'
-        onClick={scrollPrev}
-        disabled={prevBtnDisabled}>
-        <ChevronLeftCircle className='h-8 w-8 text-slate-500 hover:text-white transition-colors duration-300' />
-      </button>
-      <button
-        className='invisible md:visible embla__next text-white absolute top-1/2 right-6 -translate-y-1/2'
-        onClick={scrollNext}
-        disabled={nextBtnDisabled}>
-        <ChevronRightCircle className='h-8 w-8 text-slate-500 hover:text-white transition-colors duration-300' />
-      </button> */}
 
       <div className='embla__dots'>
         {scrollSnaps.map((_, index) => (

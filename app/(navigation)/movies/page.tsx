@@ -5,7 +5,7 @@ import PaginationNumbers from "@/components/PaginationNumbers";
 import { discoverMovies } from "@/helpers";
 import Footer from "@/components/Footer";
 export const metadata: Metadata = {
-  title: "Movies - Playflix",
+  title: "Watch The Latest Movies Online - Free",
   description: "Free Movies & Tv Shows Online",
 };
 

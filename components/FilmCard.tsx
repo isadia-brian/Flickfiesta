@@ -1,18 +1,19 @@
 import Image from "next/image";
-import { Heart, Star, Eye } from "lucide-react";
+import { Heart, Star } from "lucide-react";
+import Link from "next/link";
 
-const TrialCard = (props) => {
-  const { film } = props;
+const FilmCard = (props) => {
+  const { film, dark } = props;
   const title = film.name || film.title;
   const image = film.poster_path;
-
-  const filmYear = film?.first_air_date || film?.release_date;
-
-  const year = filmYear?.substring(0, 4);
+  const year = film.year;
   const vote_average = Math.round(film.vote_average);
-  const dark = true;
+  const filmLink = film.link;
+
   return (
-    <div className='relative flex flex-col gap-2 cursor-pointer'>
+    <Link
+      href={{ pathname: filmLink, query: { id: film.id } }}
+      className='relative flex flex-col gap-2 cursor-pointer transition ease-in-out md:hover:scale-110 duration-300 '>
       <div className='relative fill h-[280px] w-[190px] rounded-lg hover:rounded-md'>
         <Image
           src={`https://image.tmdb.org/t/p/w500${image}`}
@@ -26,22 +27,22 @@ const TrialCard = (props) => {
         <div className='flex items-center justify-between'>
           <p
             className={`text-[11px] leading-4  ${
-              dark ? "text-black" : "text-gray-300/80"
+              dark ? "text-white" : "text-gray-300/80"
             }`}>
             {year}
           </p>
-          <div className='flex items-center gap-3'>
+          <div className='flex items-center gap-4'>
             <Heart className='h-[13px] w-[13px]' />
-            <Eye className='h-[13px] w-[13px]' />
+
             <div className='flex items-center gap-1'>
-              <Star className='h-[13px] w-[13px]' />
-              <p className='text-[11px] leading-4 text-black'>{vote_average}</p>
+              <Star className='h-[13px] w-[13px]' fill='yellow' />
+              <p className='text-[12px] leading-4 text-white'>{vote_average}</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
-export default TrialCard;
+export default FilmCard;
