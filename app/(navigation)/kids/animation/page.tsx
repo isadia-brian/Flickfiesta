@@ -1,33 +1,31 @@
-import VideoSlide from "@/components/VideoSlide";
 import { Button } from "@/components/ui/button";
-import { getSingleTV } from "@/helpers";
+import { getSingleMovie } from "@/helpers";
 import { Play, Star, Youtube as Tube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import YouTube from "react-youtube";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const TVShow = async ({ searchParams }: Props) => {
+const Animations = async ({ searchParams }: Props) => {
   const idString = searchParams?.id;
   const id = Number(idString);
 
-  const tvShow = await getSingleTV(id);
+  const movie = await getSingleMovie(id);
 
-  let rating = Math.round(tvShow?.vote_average * 10) / 10;
-  const year = tvShow?.first_air_date.substring(0, 4);
-  const media = "tv";
+  let rating = Math.round(movie?.vote_average * 10) / 10;
+  const year = movie?.release_date.substring(0, 4);
+  const media = "movie";
 
   return (
     <div className='relative'>
       <div className='relative h-screen flex flex-col justify-center'>
         <div className='relative h-full w-full'>
           <Image
-            src={`https://image.tmdb.org/t/p/w1280${tvShow?.backdrop_path}`}
-            alt='tv poster'
+            src={`https://image.tmdb.org/t/p/w1280${movie?.backdrop_path}`}
+            alt='show poster'
             fill
             className='object-cover'
           />
@@ -36,7 +34,7 @@ const TVShow = async ({ searchParams }: Props) => {
           <div className='flex flex-col gap-7 '>
             <div className='relative'>
               <h1 className='relative text-white text-4xl md:text-5xl font-bold md:w-[500px] leading-tight'>
-                {tvShow?.name}
+                {movie?.title}
               </h1>
               <div className='h-[4px] md:h-[6px] w-12 md:w-16 bg-red-500 -skew-x-[30deg]' />
             </div>
@@ -85,15 +83,15 @@ const TVShow = async ({ searchParams }: Props) => {
             </div>
             <div className='text-white text-sm md:w-[500px]'>
               <p className='line-clamp-5 pr-4 leading-relaxed'>
-                {tvShow?.overview}
+                {movie?.overview}
               </p>
             </div>
 
             <div className='flex items-center gap-3 px-2'>
               <Link
                 href={{
-                  pathname: `/watch/${tvShow?.name}`,
-                  query: { name: tvShow?.title, media: media, id: id },
+                  pathname: `/watch/${movie.title}`,
+                  query: { name: movie?.title, media: media, id: id },
                 }}
                 className='flex items-center justify-center whitespace-nowrap md:w-[150px] h-9 px-4 md:px-0  rounded-none gap-2  py-6 bg-gradient-to-r from-orange-500 to-red-500 -skew-x-[30deg] text-sm font-medium transition-colors gradient element-to-rotate'>
                 <Play className='h-4 w-4 skew-x-[30deg]' fill='white' />
@@ -107,11 +105,11 @@ const TVShow = async ({ searchParams }: Props) => {
           </div>
         </div>
       </div>
-      <div className='text-black relative'>
-        <h1>Hello</h1>
+      <div className='text-black relative px-4 md:px-10 py-8'>
+        <h5 className='font-semibold text-2xl'>Cast</h5>
       </div>
     </div>
   );
 };
 
-export default TVShow;
+export default Animations;

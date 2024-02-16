@@ -7,7 +7,7 @@ const FilmCard = (props) => {
   const title = film.name || film.title;
   const image = film.poster_path;
   const year = film.year;
-  const vote_average = Math.round(film.vote_average);
+  const vote_average = Math.round(film.vote_average) || film.rating;
   const filmLink = film.link;
 
   return (

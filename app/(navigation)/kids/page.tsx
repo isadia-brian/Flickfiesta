@@ -2,40 +2,23 @@ import type { Metadata } from "next";
 import Filter from "@/components/Filter";
 import ListSkeleton from "@/components/ListSkeleton";
 import PaginationNumbers from "@/components/PaginationNumbers";
-import MovieCard from "@/components/MovieCard";
 import { Suspense } from "react";
-import { discoverAnimations, sortByVoteCount } from "@/helpers";
+import { discoverAnimations } from "@/helpers";
 import Footer from "@/components/Footer";
+import FilmCard from "@/components/FilmCard";
 
 export const metadata: Metadata = {
-  title: "Watch The Latest Kids Movies & TV Online - Free",
+  title: "Watch The Latest Kids Movies - Free",
   description: "Free Movies & Tv Shows Online",
 };
 
 const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
   const page = Number(searchParams?.page) || 1;
 
-  const media = "animation";
+  const media = "kids";
   const data = await discoverAnimations(page);
-  const sortedData = await sortByVoteCount();
-  let allData = sortedData.results;
-
-  allData.sort((a, b) => {
-    return a.vote_average - b.vote_average;
-  });
-
-  allData.sort((a, b) => {
-    let yearA = Number(a.release_date.substring(0, 4));
-    let yearB = Number(b.release_date.substring(0, 4));
-
-    return yearB - yearA;
-  });
-
-  //   allData.forEach((e) => {
-  //     console.log(`${e.original_title} ${e.vote_average}`);
-  //   });
-
-  const pages = data?.total_pages;
+  const allData = data.results;
+  const pages = data?.pages;
 
   return (
     <div className='relative bg-black/90 h-full w-full px-5 md:px-0'>
@@ -50,10 +33,10 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
 
         <Suspense fallback={<ListSkeleton />}>
           <ul className='grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8 text-white'>
-            {allData?.map((movie, index) => {
+            {allData?.map((film, index) => {
               return (
                 <li key={index}>
-                  <MovieCard movie={movie} hover={true} />
+                  <FilmCard film={film} dark={true} key={index} />
                 </li>
               );
             })}

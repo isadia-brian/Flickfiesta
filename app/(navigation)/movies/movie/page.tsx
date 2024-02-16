@@ -1,11 +1,10 @@
-import VideoSlide from "@/components/VideoSlide";
 import { Button } from "@/components/ui/button";
-import { getSingleMovie, getVideoData } from "@/helpers";
+import { getSingleMovie } from "@/helpers";
 
 import { Play, Star, Youtube as Tube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
 import YouTube from "react-youtube";
 
 type Props = {
@@ -15,11 +14,10 @@ type Props = {
 const Movie = async ({ searchParams }: Props) => {
   const idString = searchParams?.id;
   const id = Number(idString);
-
   const movie = await getSingleMovie(id);
-
   let rating = Math.round(movie?.vote_average * 10) / 10;
   const year = movie?.release_date.substring(0, 4);
+  const media = "movie";
 
   return (
     <div className='relative'>
@@ -91,7 +89,10 @@ const Movie = async ({ searchParams }: Props) => {
 
             <div className='flex items-center gap-3 px-2'>
               <Link
-                href={`/watch/movies/${id}`}
+                href={{
+                  pathname: `/watch/${movie?.title}`,
+                  query: { name: movie?.title, media: media, id: id },
+                }}
                 className='flex items-center justify-center whitespace-nowrap md:w-[150px] h-9 px-4 md:px-0  rounded-none gap-2  py-6 bg-gradient-to-r from-orange-500 to-red-500 -skew-x-[30deg] text-sm font-medium transition-colors gradient element-to-rotate'>
                 <Play className='h-4 w-4 skew-x-[30deg]' fill='white' />
                 <span className='skew-x-[30deg]'>WATCH NOW</span>
