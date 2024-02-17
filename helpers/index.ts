@@ -42,16 +42,7 @@ export const getTrendingData = async () => {
   }
 };
 
-const getMovieData = async () => {
-  const res = await fetch(
-    "https://api.themoviedb.org/3/movie/popular?include_adult=true&api_key=d8bfacf62ba3f83b7f46230a2fb38e91"
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  return res.json();
-};
+//
 
 export const discoverTV = async (page: number) => {
   try {

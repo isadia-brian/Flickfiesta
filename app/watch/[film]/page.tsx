@@ -1,4 +1,4 @@
-const Watch = ({ params, searchParams }) => {
+const Watch = ({ searchParams }) => {
   const videoId = searchParams.id;
   const title = searchParams.name;
   const media = searchParams.media;

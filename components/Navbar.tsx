@@ -65,15 +65,15 @@ const Navbar = () => {
       ) : (
         <div>
           <div className='flex items-center justify-between py-5 px-4 md:hidden'>
+            <UserAvatar />
+            <p className='text-xl font-bold text-red-500'>FlickFiesta</p>
             <Button
               variant='outline'
               size='icon'
-              className='rounded-full '
+              className='rounded-full border-none '
               onClick={() => setIsOpen(true)}>
-              <AlignLeft className='h-7 w-7' />
+              <AlignLeft className='h-6 w-6' />
             </Button>
-            <p className='text-xl font-bold text-red-500'>FlickFiesta</p>
-            <UserAvatar />
           </div>
           <div
             className={`w-full transition-colors duration-150  py-3 hidden md:flex md:px-10 lg:px-0 ${
@@ -101,7 +101,7 @@ const Navbar = () => {
                         className='cursor-pointer text-xs font-medium flex flex-col items-center gap-1'>
                         <Link href={link}>{title}</Link>
                         {pathName === link && (
-                          <div
+                          <span
                             className={`h-[2px] bg-red-500 rounded-full absolute bottom-0 w-6 transition-width duration-300 ease-in-out `}
                           />
                         )}

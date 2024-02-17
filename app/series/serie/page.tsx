@@ -1,4 +1,3 @@
-import VideoSlide from "@/components/VideoSlide";
 import { Button } from "@/components/ui/button";
 import { getSingleTV } from "@/helpers";
 import { Play, Star, Youtube as Tube } from "lucide-react";
@@ -27,7 +26,7 @@ const TVShow = async ({ searchParams }: Props) => {
         <div className='relative h-full w-full'>
           <Image
             src={`https://image.tmdb.org/t/p/w1280${tvShow?.backdrop_path}`}
-            alt='tv poster'
+            alt={tvShow?.name}
             fill
             className='object-cover'
           />
@@ -107,8 +106,8 @@ const TVShow = async ({ searchParams }: Props) => {
           </div>
         </div>
       </div>
-      <div className='text-black relative'>
-        <h1>Hello</h1>
+      <div className='text-black relative px-4 md:px-10 py-8'>
+        <h5 className='font-semibold text-2xl'>Cast</h5>
       </div>
     </div>
   );
