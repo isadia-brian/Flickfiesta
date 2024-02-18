@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Carousel from "@/components/Carousel";
 import Film from "@/components/Film";
 import Section from "@/components/Section";
@@ -18,7 +17,6 @@ export default async function Home() {
   return (
     <main className='bg-black/90'>
       <div className='relative h-full'>
-        <Navbar />
         <div className='relative'>
           <Carousel trending={trending} />
         </div>

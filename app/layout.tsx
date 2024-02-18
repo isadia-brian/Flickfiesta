@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-
+"use client";
+import { useState, useEffect } from "react";
 import "./globals.css";
-
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
+import SearchFilm from "@/components/Search";
 
 const poppins = localFont({
   src: [
@@ -46,21 +46,28 @@ const poppins = localFont({
   ],
 });
 
-export const metadata: Metadata = {
-  title: "FilmFiesta",
-  description: "Free Movies & Tv Shows Online",
-};
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [isHidden, setIsHidden] = useState(false);
+
+  const toggleHidden = () => {
+    setIsHidden(!isHidden);
+  };
+
   return (
     <html lang='en'>
-      <body className={`${poppins.className}`}>
-        <Navbar />
-        {children}
+      <body className={`${poppins.className} relative`}>
+        <div
+          className={` ${
+            isHidden ? "overflow-hidden h-screen" : "overflow-y-auto"
+          }`}>
+          <Navbar toggleHidden={toggleHidden} />
+          {children}
+        </div>
+        <div>{isHidden && <SearchFilm toggleHidden={toggleHidden} />}</div>
       </body>
     </html>
   );

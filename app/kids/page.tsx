@@ -21,7 +21,7 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
   const pages = data?.pages;
 
   return (
-    <div className='relative bg-black/90 h-full w-full px-5 md:px-0'>
+    <div className='relative bg-black/90 h-max w-full px-5 md:px-0'>
       <div className='pt-12 md:pt-24 relative md:max-w-[1200px] md:mx-auto pb-16 '>
         <h1 className='text-white text-center md:text-left uppercase font-black text-lg md:text-2xl mb-12'>
           Kids
@@ -36,7 +36,7 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
             {allData?.map((film, index) => {
               return (
                 <li key={index}>
-                  <FilmCard film={film} dark={true} key={index} />
+                  <FilmCard film={film} dark={true} hover={true} key={index} />
                 </li>
               );
             })}

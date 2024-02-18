@@ -3,7 +3,7 @@ import { Heart, Star } from "lucide-react";
 import Link from "next/link";
 
 const FilmCard = (props) => {
-  const { film, dark } = props;
+  const { film, dark, hover } = props;
   const title = film.name || film.title;
   const image = film.poster_path;
   const year = film.year;
@@ -13,7 +13,9 @@ const FilmCard = (props) => {
   return (
     <Link
       href={{ pathname: filmLink, query: { id: film.id } }}
-      className='relative flex flex-col gap-2 cursor-pointer transition ease-in-out md:hover:scale-110 duration-300 '>
+      className={`relative flex flex-col gap-2 cursor-pointer transition ease-in-out  duration-300 ${
+        !hover ? "" : "md:hover:scale-110"
+      }`}>
       <div className='relative fill h-[280px] w-[190px] rounded-lg hover:rounded-md'>
         <Image
           src={`https://image.tmdb.org/t/p/w500${image}`}
@@ -27,7 +29,7 @@ const FilmCard = (props) => {
         <div className='flex items-center justify-between'>
           <p
             className={`text-[11px] leading-4  ${
-              dark ? "text-white" : "text-gray-300/80"
+              dark ? "text-white" : "text-black"
             }`}>
             {year}
           </p>
@@ -36,7 +38,12 @@ const FilmCard = (props) => {
 
             <div className='flex items-center gap-1'>
               <Star className='h-[13px] w-[13px]' fill='yellow' />
-              <p className='text-[11px] leading-4 text-white'>{vote_average}</p>
+              <p
+                className={`text-[11px] leading-4  ${
+                  dark ? "text-white" : "text-black"
+                }`}>
+                {vote_average}
+              </p>
             </div>
           </div>
         </div>

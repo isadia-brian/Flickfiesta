@@ -145,7 +145,7 @@ const Section: React.FC<PropType> = (props) => {
         ref={scrollContainerRef}
         className=' flex gap-4 pt-5 pb-4 w-full  overflow-x-scroll no-scrollbar'>
         {filteredData?.map((film, index) => {
-          return <FilmCard film={film} dark={true} key={index} />;
+          return <FilmCard film={film} dark={true} hover={true} key={index} />;
         })}
       </div>
     </div>

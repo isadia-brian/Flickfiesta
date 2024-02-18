@@ -289,3 +289,50 @@ export const getTrendingFilm = async () => {
     console.error("error:", error);
   }
 };
+
+export const searchFilm = async (media: string, query: string) => {
+  let url: string = "";
+  let results = [];
+  let link: string;
+
+  if (!media && !query) {
+    return null;
+  } else if (media === "movie") {
+    url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`;
+    link = "/movies/movie";
+  } else if (media === "tv") {
+    url = `https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false&language=en-US&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`;
+    link = "/series/serie";
+  }
+
+  try {
+    const response = await fetch(url)
+      .then((res) => res.json())
+      .then((json) => json.results);
+
+    const data = response;
+    const modifiedData = data.map((item) => {
+      console.log(item);
+
+      const returnedYear = item.first_air_date || item.release_date;
+
+      const year = Number(returnedYear?.substring(0, 4));
+
+      return {
+        title: item.title || item.name,
+        link: link,
+        id: item.id,
+        overview: item.overview,
+        poster_path: item.poster_path,
+        year: year,
+        rating: Math.round(item.vote_average),
+      };
+    });
+
+    results.push(...modifiedData);
+
+    return results;
+  } catch (error) {
+    console.error("error:", error);
+  }
+};

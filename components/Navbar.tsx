@@ -5,6 +5,7 @@ import { AlignLeft, ChevronDown, Search, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import UserAvatar from "./UserAvatar";
 import MobileNav from "./MobileNav";
+import SearchFilm from "./Search";
 
 import Link from "next/link";
 const Links = [
@@ -25,7 +26,7 @@ const Links = [
     link: "/kids",
   },
 ];
-const Navbar = () => {
+const Navbar = ({ toggleHidden }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setIsScrolled] = useState(false);
   const [searchPressed, setSearchPressed] = useState(false);
@@ -43,6 +44,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 5;
+
       setIsScrolled(isScrolled);
     };
 
@@ -111,11 +113,11 @@ const Navbar = () => {
                 </nav>
 
                 <div
-                  className={`flex items-center justify-between w-full  px-4 `}>
+                  className={`flex items-center justify-between w-full  pr-4  pl-10`}>
                   <input
                     type='text'
                     placeholder='Search Movies or TV Shows'
-                    className={`outline-none bg-transparent text-xs  flex-1 ${
+                    className={`outline-none bg-transparent text-xs flex-1 ${
                       searchPressed ? "flex" : "hidden"
                     }`}
                   />
@@ -129,7 +131,7 @@ const Navbar = () => {
                       className={`absolute top-1/2 -translate-y-1/2  px-3 py-3 rounded-full right-1 cursor-pointer ${
                         scrolled ? "bg-white text-black" : "bg-black text-white"
                       }`}
-                      onClick={handleSearchPressed}>
+                      onClick={toggleHidden}>
                       <Search className='h-4 w-4 ' />
                     </div>
                   )}

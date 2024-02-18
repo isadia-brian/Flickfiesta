@@ -185,3 +185,12 @@
 .display-none {
   display: none;
 }
+
+/* @media (width<=480px) {
+  .modal-main {
+    width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+    left: 0;
+  }
+} */

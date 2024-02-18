@@ -25,7 +25,6 @@ const Filter: React.FC<PropType> = (props) => {
   const [disabled, setDisabled] = useState(true);
 
   const [show, setShow] = useState(false);
-  const [searchedShows, setSearchedShows] = useState([]);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -111,7 +110,7 @@ const Filter: React.FC<PropType> = (props) => {
               ) : (
                 <div className='w-full'>
                   {media === "tv" ? (
-                    <div className='grid grid-cols-6 gap-y-8 gap-x-4'>
+                    <div className='grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-4'>
                       {data?.map((tv, index) => (
                         <div key={index}>
                           <TVCard tv={tv} hover={false} dark={true} />
@@ -119,7 +118,7 @@ const Filter: React.FC<PropType> = (props) => {
                       ))}
                     </div>
                   ) : (
-                    <div className='grid grid-cols-6 gap-y-8 gap-x-4'>
+                    <div className='grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-4'>
                       {data?.map((movie, index) => (
                         <div key={index}>
                           <MovieCard movie={movie} hover={false} dark={true} />

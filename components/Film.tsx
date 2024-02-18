@@ -176,7 +176,7 @@ const Film = () => {
 
       <div className='flex gap-5 w-full h-full py-10 overflow-x-scroll no-scrollbar md:grid grid-cols-6 gap-y-10'>
         {filteredData?.slice(0, 12).map((film, index) => {
-          return <FilmCard film={film} dark={true} key={index} />;
+          return <FilmCard film={film} dark={true} hover={true} key={index} />;
         })}
       </div>
     </div>
