@@ -6,6 +6,7 @@ import TVCard from "@/components/TVCard";
 import { Suspense } from "react";
 import { discoverTV } from "@/helpers";
 import Footer from "@/components/Footer";
+import Preloader from "@/components/Preloader";
 
 export const metadata: Metadata = {
   title: "Watch The Latest Tv Shows Online - Free",
@@ -41,7 +42,7 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
           <Filter media={media} />
         </div>
 
-        <Suspense fallback={<ListSkeleton />}>
+        <Suspense fallback={<Preloader />}>
           <ul className='grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8 text-white'>
             {shows?.map((tv, index) => {
               return (

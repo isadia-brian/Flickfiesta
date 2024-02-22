@@ -6,6 +6,7 @@ import { Suspense } from "react";
 import { discoverAnimations } from "@/helpers";
 import Footer from "@/components/Footer";
 import FilmCard from "@/components/FilmCard";
+import Preloader from "@/components/Preloader";
 
 export const metadata: Metadata = {
   title: "Watch The Latest Kids Movies - Free",
@@ -31,7 +32,7 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
           <Filter media={media} />
         </div>
 
-        <Suspense fallback={<ListSkeleton />}>
+        <Suspense fallback={<Preloader />}>
           <ul className='grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8 text-white'>
             {allData?.map((film, index) => {
               return (

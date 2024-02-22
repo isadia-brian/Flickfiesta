@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { getPopularFilm } from "@/helpers";
 
 import FilmCard from "./FilmCard";
+import Link from "next/link";
 
 const headerButtons = [
   {
@@ -22,11 +23,6 @@ const headerButtons = [
     title: "Animation",
     link: "",
     icon: <Video className='h-4 w-4' />,
-  },
-  {
-    title: "Kids",
-    link: "",
-    icon: <Baby className='h-4 w-4' />,
   },
 ];
 
@@ -66,7 +62,7 @@ const filterButtons = [
 ];
 
 interface DataItem {
-  media: "Movie" | "TV";
+  media: "Movie" | "TV" | "Animation";
   title?: string;
   name?: string;
   poster_path: string;
@@ -85,11 +81,13 @@ const useFilter = (data: DataItem[], filter: string) => {
   useEffect(() => {
     // If the filter is "initial" return the original data
 
-    if (filter === "Initial") {
-      setFilteredData(data);
-    } else {
+    if (filter === "Movies") {
+      setFilteredData(data.filter((item) => item.media === "Movie"));
+    } else if (filter === "Series") {
       //Other wise filter the data by type
-      setFilteredData(data.filter((item) => item.media === filter));
+      setFilteredData(data.filter((item) => item.media === "TV"));
+    } else {
+      setFilteredData(data.filter((item) => item.media === "Animation"));
     }
   }, [data, filter]); //Update filtered data when the data or filter changes
 
@@ -98,16 +96,16 @@ const useFilter = (data: DataItem[], filter: string) => {
 
 //Main Component that renders the data
 
-const Film = () => {
+const Film = (props) => {
+  const { allData } = props;
   const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
   const [activeCategoryIndex, setActiveCategoryIndex] = useState<number[]>([]);
   const [activeLabelIndex, setActiveLabelIndex] = useState<number[]>([]);
-
-  //Initial Data  that comes  from the useEffect
-  const [data, setData] = useState<DataItem[]>([]);
+  const [navLink, setNavLink] = useState<string>("/movies");
+  const [data, setData] = useState<DataItem[]>(allData);
 
   //The filter value controlled by the buttons
-  const [filter, setFilter] = useState<string>("Initial");
+  const [filter, setFilter] = useState<string>("Movies");
 
   // The filtered data that is returned by the custom hook
   const filteredData = useFilter(data, filter);
@@ -120,22 +118,18 @@ const Film = () => {
     });
   };
 
-  useEffect(() => {
-    const getData = async () => {
-      const films = await getPopularFilm();
-      setData(films);
-    };
-
-    getData();
-  }, []);
-
   const handleFilter = (index: number) => {
     setActiveButtonIndex(index);
 
     if (index === 0) {
-      setFilter("Movie");
+      setFilter("Movies");
+      setNavLink("/movies");
     } else if (index === 1) {
-      setFilter("TV");
+      setFilter("Series");
+      setNavLink("/series");
+    } else {
+      setFilter("Animation");
+      setNavLink("/kids");
     }
 
     setActiveCategoryIndex([]);
@@ -161,7 +155,7 @@ const Film = () => {
           </div>
         ))}
       </div>
-      <div className='flex items-center justify-between gap-10 py-4 overflow-x-scroll no-scrollbar'>
+      <div className='flex items-center justify-between gap-10 pt-4 pb-6 overflow-x-scroll no-scrollbar'>
         {filterButtons.map(({ genre, link }, index) => (
           <Button
             key={index}
@@ -174,8 +168,14 @@ const Film = () => {
         ))}
       </div>
 
-      <div className='flex gap-5 w-full h-full py-10 overflow-x-scroll no-scrollbar md:grid grid-cols-6 gap-y-10'>
-        {filteredData?.slice(0, 12).map((film, index) => {
+      <div className='flex justify-end'>
+        <Link href={navLink} className='text-xs underline underline-offset-2'>
+          see all
+        </Link>
+      </div>
+
+      <div className='flex gap-5 w-full h-full pt-4 pb-10 overflow-x-scroll no-scrollbar md:grid grid-cols-6 gap-y-10'>
+        {filteredData?.map((film, index) => {
           return <FilmCard film={film} dark={true} hover={true} key={index} />;
         })}
       </div>

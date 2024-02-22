@@ -4,6 +4,8 @@ import Filter from "@/components/Filter";
 import PaginationNumbers from "@/components/PaginationNumbers";
 import { discoverMovies } from "@/helpers";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
+import Preloader from "@/components/Preloader";
 export const metadata: Metadata = {
   title: "Watch The Latest Movies Online - Free",
   description: "Free Movies & Tv Shows Online",
@@ -43,15 +45,17 @@ const Movies = async ({
           <Filter media={media} />
         </div>
 
-        <ul className='grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8 text-white'>
-          {movies?.map((movie, index) => {
-            return (
-              <li key={index}>
-                <MovieCard movie={movie} hover={true} />
-              </li>
-            );
-          })}
-        </ul>
+        <Suspense fallback={<Preloader />}>
+          <ul className='grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8 text-white'>
+            {movies?.map((movie, index) => {
+              return (
+                <li key={index}>
+                  <MovieCard movie={movie} hover={true} />
+                </li>
+              );
+            })}
+          </ul>
+        </Suspense>
       </div>
       <div className='flex items-center justify-center pb-12'>
         <PaginationNumbers pages={pages} page={page} media='movies' />

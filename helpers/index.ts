@@ -1,3 +1,5 @@
+import { json } from "stream/consumers";
+
 export const getTrendingData = async () => {
   let results = [];
   try {
@@ -179,7 +181,7 @@ export const getPopularFilm = async () => {
     )
       .then((res) => res.json())
       .then((json) => json.results);
-    const topMovies = movies.slice(0, 6);
+    const topMovies = movies.slice(0, 12);
 
     const moviesWithLinks = topMovies?.map((movie) => {
       const convertedYear = Number(movie.release_date.substring(0, 4));
@@ -215,6 +217,25 @@ export const getPopularFilm = async () => {
     });
 
     results.push(...showsWithLinks);
+
+    //Animation
+    const allAnimation = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&primary_release_date.gte=2023-01-01&release_date.gte=2023-01-01&sort_by=popularity.desc&vote_count.gte=6&with_genres=16&with_original_language=en&without_genres=37%2C10752%2C53%2C10770%2C878%2C10749%2C9648%2C27%2C36%2C99%2C80&page=1&api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`
+    )
+      .then((res) => res.json())
+      .then((json) => json.results);
+    const topAnimation = allAnimation.slice(0, 12);
+    const animationWithLinks = topAnimation?.map((animation) => {
+      const convertedYear = Number(animation.release_date.substring(0, 4));
+      return {
+        ...animation,
+        link: "/kids/animation",
+        year: convertedYear,
+        media: "Animation",
+      };
+    });
+    results.push(...animationWithLinks);
+
     return results;
   } catch (error) {
     console.error("error", error);

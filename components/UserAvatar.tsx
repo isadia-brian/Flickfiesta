@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 
 import {
@@ -28,6 +29,11 @@ import {
 } from "lucide-react";
 
 const UserAvatar = () => {
+  const router = useRouter();
+
+  const handleAuthentication = () => {
+    router.push("/auth/login");
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -35,6 +41,7 @@ const UserAvatar = () => {
         className='bg-transparent outline-none focus:bg-transparent relative'>
         <Button
           type='button'
+          aria-pressed='false'
           size='icon'
           className='outline-none bg-transparent focus-visible:ring-0 cursor-pointer'
           title='user'>
@@ -42,6 +49,7 @@ const UserAvatar = () => {
             <AvatarImage
               src='https://github.com/shadcn.png'
               className='cursor-pointer'
+              alt='user-avatar'
             />
             <AvatarFallback>BL</AvatarFallback>
           </Avatar>
@@ -100,8 +108,12 @@ const UserAvatar = () => {
 
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut className='mr-2 h-4 w-4' />
-          <span>Sign In</span>
+          <Button
+            className='bg-inherit w-full text-black hover:bg-inherit'
+            onClick={handleAuthentication}>
+            {/* <LogOut className='mr-2 h-4 w-4' /> */}
+            <span>Sign In</span>
+          </Button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

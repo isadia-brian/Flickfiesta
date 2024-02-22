@@ -70,6 +70,8 @@ const Navbar = ({ toggleHidden }) => {
             <UserAvatar />
             <p className='text-xl font-bold text-red-500'>FlickFiesta</p>
             <Button
+              type='button'
+              name='navigation-button'
               variant='outline'
               size='icon'
               className='rounded-full border-none '
