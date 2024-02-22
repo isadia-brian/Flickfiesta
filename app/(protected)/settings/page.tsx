@@ -2,6 +2,7 @@ import { auth, signOut } from "@/auth";
 
 const Settings = async () => {
   const session = await auth();
+
   return (
     <div className='h-screen flex flex-col items-center justify-center space-y-6'>
       <h1>{JSON.stringify(session)}</h1>

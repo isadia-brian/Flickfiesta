@@ -91,8 +91,8 @@ const TVShow = async ({ searchParams }: Props) => {
             <div className='flex items-center gap-3 px-2'>
               <Link
                 href={{
-                  pathname: `/watch/${tvShow?.name}`,
-                  query: { name: tvShow?.title, media: media, id: id },
+                  pathname: `/watch`,
+                  query: { name: tvShow?.name, media: media, id: id },
                 }}
                 className='flex items-center justify-center whitespace-nowrap md:w-[150px] h-9 px-4 md:px-0  rounded-none gap-2  py-6 bg-gradient-to-r from-orange-500 to-red-500 -skew-x-[30deg] text-sm font-medium transition-colors gradient element-to-rotate'>
                 <Play className='h-4 w-4 skew-x-[30deg]' fill='white' />

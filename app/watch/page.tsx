@@ -1,7 +1,13 @@
-const Watch = ({ searchParams }) => {
-  const videoId = searchParams.id;
-  const title = searchParams.name;
-  const media = searchParams.media;
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
+const Watch = () => {
+  const searchParams = useSearchParams();
+
+  const title = searchParams.get("name");
+  const videoId = searchParams.get("id");
+  const media = searchParams.get("media");
 
   return (
     <div className='h-screen w-full  flex md:items-center md:justify-center '>

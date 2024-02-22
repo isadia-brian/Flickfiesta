@@ -8,6 +8,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@/helpers/schemas";
+import { useSearchParams } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -20,11 +21,24 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { login } from "@/actions/login";
 import FormError from "@/components/FormError";
+import { signIn } from "next-auth/react";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import FormSuccess from "@/components/FormSuccess";
 
 const Login = () => {
-  const [error, setError] = useState<string | undefined>("");
+  const searchParams = useSearchParams();
 
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "This Email was used by a different sign in service"
+      : "";
+  const onClick = (provider: "google") => {
+    signIn(provider, {
+      callbackUrl: DEFAULT_LOGIN_REDIRECT,
+    });
+  };
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [show, setShow] = useState(false);
   const [passwordType, setPasswordType] = useState<string>("password");
@@ -49,10 +63,12 @@ const Login = () => {
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
+    setSuccess("");
 
     startTransition(() => {
       login(values).then((data) => {
-        setError(data.error);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };
@@ -154,8 +170,8 @@ const Login = () => {
                   </div>
                 </div>
               </div>
-              <FormError message={error} />
-
+              <FormError message={error || urlError} />
+              <FormSuccess message={success} />
               <Button
                 className='w-full md:py-6'
                 type='submit'
@@ -172,7 +188,8 @@ const Login = () => {
         </div>
         <Button
           className='w-[80vw] md:w-full mx-auto  bg-transparent border border-neutral-300 text-neutral-900 flex items-center justify-center gap-2 shadow-none md:py-6 hover:bg-transparent'
-          type='button'>
+          type='button'
+          onClick={() => onClick("google")}>
           <Image
             width={20}
             height={20}

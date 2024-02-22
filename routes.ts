@@ -9,7 +9,8 @@ export const publicRoutes = [
   "/movies",
   "/series",
   "/kids",
-  "/watch/:path/*",
+  "/auth/new-verification",
+  "/watch",
   "/movies/movie",
   "/series/serie",
   "/kids/animation",
@@ -21,7 +22,12 @@ export const publicRoutes = [
  * @type {string[]}
  */
 
-export const authRoutes = ["/auth/login", "/auth/register"];
+export const authRoutes = [
+  "/auth/login",
+  "/auth/register",
+  "/auth/error",
+  "/auth/forgot",
+];
 
 /**
  * The prefix for API authentication routes
