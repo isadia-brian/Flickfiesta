@@ -1,6 +1,4 @@
-import LoginForm from "@/components/LoginForm";
 import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
-import React from "react";
 
 const Forgot = () => {
   return (
