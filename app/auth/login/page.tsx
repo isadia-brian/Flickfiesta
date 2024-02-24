@@ -201,7 +201,7 @@ const Login = () => {
         </Button>
 
         <p className='text-[11px] md:text-[13px] font-medium text-center mt-8'>
-          Don't have an account?
+          Don&apos;t have an account?
           <span>
             <Link href='/auth/register' className='font-bold'>
               {" "}
