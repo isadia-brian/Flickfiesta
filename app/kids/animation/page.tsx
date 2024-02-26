@@ -90,7 +90,7 @@ const Animations = async ({ searchParams }: Props) => {
             <div className='flex items-center gap-3 px-2'>
               <Link
                 href={{
-                  pathname: `/watch/${movie.title}`,
+                  pathname: `/watch`,
                   query: { name: movie?.title, media: media, id: id },
                 }}
                 className='flex items-center justify-center whitespace-nowrap md:w-[150px] h-9 px-4 md:px-0  rounded-none gap-2  py-6 bg-gradient-to-r from-orange-500 to-red-500 -skew-x-[30deg] text-sm font-medium transition-colors gradient element-to-rotate'>
@@ -104,6 +104,7 @@ const Animations = async ({ searchParams }: Props) => {
             </div>
           </div>
         </div>
+        N
       </div>
       <div className='text-black relative px-4 md:px-10 py-8'>
         <h5 className='font-semibold text-2xl'>Cast</h5>

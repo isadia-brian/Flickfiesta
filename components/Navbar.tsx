@@ -5,7 +5,6 @@ import { AlignLeft, ChevronDown, Search, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import UserAvatar from "./UserAvatar";
 import MobileNav from "./MobileNav";
-import SearchFilm from "./Search";
 
 import Link from "next/link";
 const Links = [
@@ -26,7 +25,7 @@ const Links = [
     link: "/kids",
   },
 ];
-const Navbar = ({ toggleHidden }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setIsScrolled] = useState(false);
   const [searchPressed, setSearchPressed] = useState(false);
@@ -40,6 +39,8 @@ const Navbar = ({ toggleHidden }) => {
   const handleSearchPressed = () => {
     setSearchPressed(!searchPressed);
   };
+
+  const toggleHidden = () => {};
 
   useEffect(() => {
     const handleScroll = () => {

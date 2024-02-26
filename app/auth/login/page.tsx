@@ -163,7 +163,7 @@ const Login = () => {
                       <p className='text-[11px] font-medium'>Remember me</p>
                     </div>
                     <Link
-                      href='/auth/forgot'
+                      href='/auth/reset'
                       className='text-[11px] font-medium text-blue-700'>
                       Forgot Password?
                     </Link>

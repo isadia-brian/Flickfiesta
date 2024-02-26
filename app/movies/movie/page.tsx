@@ -104,6 +104,7 @@ const Movie = async ({ searchParams }: Props) => {
             </div>
           </div>
         </div>
+        N
       </div>
       <div className='text-black relative px-4 md:px-10 py-8'>
         <h5 className='font-semibold text-2xl'>Cast</h5>

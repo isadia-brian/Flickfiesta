@@ -27,11 +27,9 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
         <h1 className='text-white text-center md:text-left uppercase font-black text-lg md:text-2xl mb-12'>
           Kids
         </h1>
-
         <div className='mb-12'>
           <Filter media={media} />
         </div>
-
         <Suspense fallback={<Preloader />}>
           <ul className='grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8 text-white'>
             {allData?.map((film, index) => {
@@ -43,6 +41,7 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
             })}
           </ul>
         </Suspense>
+        N
       </div>
       <div className='flex items-center justify-center pb-12'>
         <PaginationNumbers pages={pages} page={page} media={media} />

@@ -35,9 +35,6 @@ const Carousel: React.FC<PropType> = (props) => {
     (index: number) => emblaApi && emblaApi.scrollTo(index),
     [emblaApi]
   );
-  const handleImageLoaded = () => {
-    console.log("ImageLoaded");
-  };
 
   const onInit = useCallback((emblaApi: EmblaCarouselType) => {
     setScrollSnaps(emblaApi.scrollSnapList());
@@ -96,7 +93,6 @@ const Carousel: React.FC<PropType> = (props) => {
                     alt={item.title}
                     className='object-cover'
                     priority
-                    onLoad={handleImageLoaded}
                   />
                 </div>
               </div>

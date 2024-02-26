@@ -1,9 +1,15 @@
-"use client";
-import { useState, useEffect } from "react";
+import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 import Navbar from "@/components/Navbar";
-import SearchFilm from "@/components/Search";
+// import SearchFilm from "@/components/Search";
+
+export const metadata: Metadata = {
+  title: "Flickfiesta",
+  description: "Watch Movies & Series Online",
+};
 
 const poppins = localFont({
   src: [
@@ -46,29 +52,20 @@ const poppins = localFont({
   ],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isHidden, setIsHidden] = useState(false);
-
-  const toggleHidden = () => {
-    setIsHidden(!isHidden);
-  };
-
+  const session = await auth();
   return (
-    <html lang='en'>
-      <body className={`${poppins.className} relative`}>
-        <div
-          className={` ${
-            isHidden ? "overflow-hidden h-screen" : "overflow-y-auto"
-          }`}>
-          <Navbar toggleHidden={toggleHidden} />
+    <SessionProvider session={session}>
+      <html lang='en'>
+        <body className={`${poppins.className} relative`}>
+          <Navbar />
           {children}
-        </div>
-        <div>{isHidden && <SearchFilm toggleHidden={toggleHidden} />}</div>
-      </body>
-    </html>
+        </body>
+      </html>
+    </SessionProvider>
   );
 }

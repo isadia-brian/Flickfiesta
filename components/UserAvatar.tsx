@@ -1,3 +1,6 @@
+"use client";
+
+import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 
@@ -30,6 +33,7 @@ import {
 
 const UserAvatar = () => {
   const router = useRouter();
+  const session = useSession();
 
   const handleAuthentication = () => {
     router.push("/auth/login");
@@ -108,12 +112,20 @@ const UserAvatar = () => {
 
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Button
-            className='bg-inherit w-full text-black hover:bg-inherit'
-            onClick={handleAuthentication}>
-            {/* <LogOut className='mr-2 h-4 w-4' /> */}
-            <span>Sign In</span>
-          </Button>
+          {session.status === "authenticated" ? (
+            <Button
+              className='bg-inherit w-full text-black hover:bg-inherit'
+              onClick={() => signOut()}>
+              <LogOut className='mr-2 h-4 w-4' />
+              <span>Sign Out</span>
+            </Button>
+          ) : (
+            <Button
+              className='bg-inherit w-full text-black hover:bg-inherit'
+              onClick={handleAuthentication}>
+              <span>Sign In</span>
+            </Button>
+          )}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -10,7 +10,7 @@ import {
   getTrendingFilm,
   getPopularFilm,
 } from "@/helpers";
-import { db } from "@/lib/db";
+
 import Preloader from "@/components/Preloader";
 
 export default async function Home() {

@@ -1,13 +1,13 @@
-import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
+import NewPasswordForm from "@/components/auth/NewPasswordForm";
 
-const Forgot = () => {
+const NewPassword = () => {
   return (
     <div className='fixed inset-0  z-[300] bg-white gap-4 text-black'>
       <div className='md:w-[1200px] mx-auto flex items-center justify-center h-screen'>
-        <ForgotPasswordForm />
+        <NewPasswordForm />
       </div>
     </div>
   );
 };
 
-export default Forgot;
+export default NewPassword;
