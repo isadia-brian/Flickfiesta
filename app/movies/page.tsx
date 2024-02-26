@@ -4,8 +4,8 @@ import Filter from "@/components/Filter";
 import PaginationNumbers from "@/components/PaginationNumbers";
 import { discoverMovies } from "@/helpers";
 import Footer from "@/components/Footer";
-import { Suspense } from "react";
-import Preloader from "@/components/Preloader";
+
+import FilmCard from "@/components/FilmCard";
 
 export const metadata: Metadata = {
   title: "Watch The Latest Movies Online - Free",
@@ -26,10 +26,6 @@ const Movies = async ({
   let movies = data.results;
 
   movies.sort((a, b) => {
-    return b.vote_average - a.vote_average;
-  });
-
-  movies.sort((a, b) => {
     let yearA = Number(a.release_date.substring(0, 4));
     let yearB = Number(b.release_date.substring(0, 4));
 
@@ -45,18 +41,16 @@ const Movies = async ({
         <div className='mb-12'>
           <Filter media={media} />
         </div>
-        <Suspense fallback={<Preloader />}>
-          <ul className='grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8 text-white'>
-            {movies?.map((movie, index) => {
-              return (
-                <li key={index}>
-                  <MovieCard movie={movie} hover={true} />
-                </li>
-              );
-            })}
-          </ul>
-        </Suspense>
-        N
+
+        <ul className='grid grid-cols-2 md:grid-cols-6 gap-x-4 gap-y-8 text-white'>
+          {movies?.map((movie, index) => {
+            return (
+              <li key={index}>
+                <FilmCard film={movie} hover={true} dark={true} />
+              </li>
+            );
+          })}
+        </ul>
       </div>
       <div className='flex items-center justify-center pb-12'>
         <PaginationNumbers pages={pages} page={page} media='movies' />

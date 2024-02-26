@@ -28,6 +28,7 @@ const Animations = async ({ searchParams }: Props) => {
             alt='show poster'
             fill
             className='object-cover'
+            priority
           />
         </div>
         <div className='absolute h-full w-full left-0 bg-gradient-to-t from-black/40 via-black/40 text-white flex flex-col justify-center px-4 md:px-10'>
