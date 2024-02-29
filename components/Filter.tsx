@@ -10,8 +10,8 @@ import {
 } from "./ui/dropdown-menu";
 import FancyModal from "./FancyModal";
 import { Button } from "./ui/button";
-import TVCard from "./TVCard";
-import MovieCard from "./MovieCard";
+// import TVCard from "./TVCard";
+// import MovieCard from "./MovieCard";
 
 type PropType = {
   media: string;
@@ -109,7 +109,7 @@ const Filter: React.FC<PropType> = (props) => {
                 </>
               ) : (
                 <div className='w-full'>
-                  {media === "tv" ? (
+                  {/* {media === "tv" ? (
                     <div className='grid grid-cols-2 md:grid-cols-6 gap-y-8 gap-x-4'>
                       {data?.map((tv, index) => (
                         <div key={index}>
@@ -125,7 +125,7 @@ const Filter: React.FC<PropType> = (props) => {
                         </div>
                       ))}
                     </div>
-                  )}
+                  )} */}
                 </div>
               )}
             </Suspense>

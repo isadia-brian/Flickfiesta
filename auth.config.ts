@@ -6,11 +6,14 @@ import { LoginSchema } from "./helpers/schemas";
 import { getUserByEmail } from "./data/user";
 
 export default {
+  trustHost: true,
+
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+
     Credentials({
       async authorize(credentials) {
         const validatedFields = LoginSchema.safeParse(credentials);

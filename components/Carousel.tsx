@@ -60,7 +60,7 @@ const Carousel: React.FC<PropType> = (props) => {
         <div className='embla__container'>
           {trending?.map((item, index) => (
             <div className='embla__slide' key={index}>
-              <div className='absolute h-full w-full z-50 flex flex-col gap-7 text-white justify-center lg:ml-10 px-5 md:px-5'>
+              <div className='absolute h-full w-full z-50 flex flex-col gap-7 text-white justify-center  px-4 lg:ml-4 lg:px-0'>
                 <h3 className='font-black text-3xl md:text-4xl lg:text-6xl md:max-w-[600px]'>
                   {item.title}
                 </h3>

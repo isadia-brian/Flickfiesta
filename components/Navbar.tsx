@@ -87,7 +87,7 @@ const Navbar = () => {
             </Button>
           </div>
           <div
-            className={`w-full transition-colors duration-150  py-3 lg:py-3 hidden md:flex md:px-4 lg:px-10 ${
+            className={`w-full transition-colors duration-150  py-3 lg:py-3 hidden md:flex md:px-4 lg:px-4 ${
               scrolled ? "bg-white/95 text-black" : "text-white"
             }`}>
             <nav className='flex items-center justify-between w-full'>
