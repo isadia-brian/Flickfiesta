@@ -1,4 +1,3 @@
-import MovieCard from "@/components/MovieCard";
 import type { Metadata } from "next";
 import Filter from "@/components/Filter";
 import PaginationNumbers from "@/components/PaginationNumbers";
