@@ -173,7 +173,7 @@ const Register = () => {
                         I accept the{" "}
                         <span>
                           <Link
-                            href='/privacy'
+                            href='/'
                             className='underline underline-offset-2 decoration-red-500 font-bold'>
                             Privacy Terms
                           </Link>
