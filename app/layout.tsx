@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import Navbar from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 // import SearchFilm from "@/components/Search";
 
 export const metadata: Metadata = {
@@ -64,6 +66,8 @@ export default async function RootLayout({
         <body className={`${poppins.className} relative`}>
           <Navbar />
           {children}
+          <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </SessionProvider>
