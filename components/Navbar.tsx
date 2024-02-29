@@ -1,7 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { AlignLeft, ChevronDown, Search, X } from "lucide-react";
+import {
+  AlignCenter,
+  AlignJustify,
+  AlignLeft,
+  ChevronDown,
+  Search,
+  X,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import UserAvatar from "./UserAvatar";
 import MobileNav from "./MobileNav";
@@ -58,7 +65,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-white md:bg-transparent w-full fixed top-0 z-50  ${
+      className={`bg-transparent w-full fixed top-0 z-50  ${
         scrolled ? "bg-white text-black" : ""
       }`}>
       {isOpen ? (
@@ -73,18 +80,17 @@ const Navbar = () => {
             <Button
               type='button'
               name='navigation-button'
-              variant='outline'
               size='icon'
               className='rounded-full border-none '
               onClick={() => setIsOpen(true)}>
-              <AlignLeft className='h-6 w-6' />
+              <AlignJustify className='h-5 w-5' />
             </Button>
           </div>
           <div
-            className={`w-full transition-colors duration-150  py-3 hidden md:flex md:px-10 lg:px-0 ${
+            className={`w-full transition-colors duration-150  py-3 lg:py-3 hidden md:flex md:px-4 lg:px-10 ${
               scrolled ? "bg-white/95 text-black" : "text-white"
             }`}>
-            <nav className='flex items-center justify-between w-[1200px] mx-auto'>
+            <nav className='flex items-center justify-between w-full'>
               <div>
                 <Link href='/' className='text-xl font-bold text-red-500'>
                   FlickFiesta

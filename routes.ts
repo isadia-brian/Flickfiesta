@@ -14,6 +14,7 @@ export const publicRoutes = [
   "/movies/movie",
   "/series/serie",
   "/kids/animation",
+  "/api/movies",
 ];
 
 /**

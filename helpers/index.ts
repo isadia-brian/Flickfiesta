@@ -1,5 +1,3 @@
-import { json } from "stream/consumers";
-
 export const getTrendingData = async () => {
   let results = [];
   try {

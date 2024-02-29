@@ -21,13 +21,13 @@ export default async function Home() {
 
   return (
     <main className='bg-black/90'>
-      <div className='relative h-full'>
+      <div className='relative'>
         <div className='relative'>
           <Suspense fallback={<Preloader />}>
             <Carousel trending={trending} />
           </Suspense>
         </div>
-        <div className='relative pb-7 w-full md:w-[1200px] mx-auto'>
+        <div className='relative pb-7 px-4'>
           <Section trendingFilm={trendingFilm} />
           <Film allData={allData} />
           <RecommendedSection recommended={recommendedFilm} />

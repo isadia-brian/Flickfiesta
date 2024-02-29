@@ -20,7 +20,7 @@ type PropType = {
 const RecommendedSection: React.FC<PropType> = (props) => {
   const { recommended } = props;
   return (
-    <div className=' mb-12 text-white flex flex-col gap-10 px-5 md:px-0'>
+    <div className=' mb-12 text-white flex flex-col gap-10 md:px-0'>
       <div className='h-[70px]  flex items-center  border-b-[0.5px] border-white/20 '>
         <h5 className='text-[20px] font-bold'>Recommended</h5>
       </div>

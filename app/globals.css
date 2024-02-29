@@ -178,6 +178,12 @@
   transform: translate(-50%, -50%);
 }
 
+@media (width<=480px) {
+  .modal-main {
+    width: 90%;
+  }
+}
+
 .display-block {
   display: block;
 }
@@ -186,11 +192,8 @@
   display: none;
 }
 
-/* @media (width<=480px) {
-  .modal-main {
-    width: 100%;
-    margin-left: 15px;
-    margin-right: 15px;
-    left: 0;
+@media (width<=480px) {
+  .embla {
+    height: 60vh;
   }
-} */
+}

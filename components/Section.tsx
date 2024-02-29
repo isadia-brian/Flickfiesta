@@ -192,16 +192,16 @@ const Section: React.FC<PropType> = (props) => {
   };
 
   return (
-    <div className=' text-white mb-8 relative px-5 md:px-0  w-full'>
+    <div className=' text-white mb-8 relative w-full'>
       {showLogin && (
         <div className='fixed inset-0 z-[1000] overflow-hidden backdrop-blur-sm  bg-black/30 flex justify-center items-center'>
-          <Card className='w-[500px]'>
+          <Card className='w-full mx-3 md:w-[500px]'>
             <CardHeader>
-              <CardTitle className=' text-2xl font-black flex justify-between'>
+              <CardTitle className=' text-xl md:text-2xl font-black flex justify-between'>
                 <p>You are not Logged in</p>
 
-                <Button size='icon' onClick={() => setShowLogin(false)}>
-                  <X className='h-5 w-5' />
+                <Button size='sm' onClick={() => setShowLogin(false)}>
+                  <X className='h-5' />
                 </Button>
               </CardTitle>
               <CardDescription>
@@ -222,11 +222,11 @@ const Section: React.FC<PropType> = (props) => {
               <div className='flex w-[80vw] mx-auto md:w-full items-center my-5'>
                 <div className='h-[0.5px] bg-neutral-300 w-full' />
                 <p className='text-neutral-700 w-full  flex items-center justify-center text-xs'>
-                  or sign in with email
+                  or <span className='hidden md:flex'>sign in with</span> email
                 </p>
                 <div className='h-[0.5px] bg-neutral-300 w-full' />
               </div>
-              <div className='mt-8'>
+              <div className='md:mt-8'>
                 <Form {...form}>
                   <form
                     className='space-y-6'
@@ -369,7 +369,7 @@ const Section: React.FC<PropType> = (props) => {
       </div>
       <div
         ref={scrollContainerRef}
-        className=' flex gap-4 pt-5 pb-4 w-full  overflow-x-scroll no-scrollbar'>
+        className=' flex gap-2 pt-5 pb-4 w-full  overflow-x-scroll no-scrollbar'>
         {filteredData?.map((film, index) => {
           return <FilmCard film={film} dark={true} hover={true} key={index} />;
         })}

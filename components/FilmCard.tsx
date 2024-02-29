@@ -14,9 +14,9 @@ const FilmCard = (props) => {
     <Link
       href={{ pathname: filmLink, query: { id: film.id } }}
       className={`relative flex flex-col gap-2 cursor-pointer transition ease-in-out  duration-300 ${
-        !hover ? "" : "md:hover:scale-110"
+        !hover ? "" : "md:hover:-translate-y-5"
       }`}>
-      <div className='relative fill h-[280px] w-[190px] rounded-lg hover:rounded-md'>
+      <div className='relative fill h-[220px] w-[160px] md:h-[240px] md:w-[180px] lg:h-[280px] lg:w-[190px] rounded-lg hover:rounded-md'>
         <Image
           src={`https://image.tmdb.org/t/p/w500${image}`}
           fill

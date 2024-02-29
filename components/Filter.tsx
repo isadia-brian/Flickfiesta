@@ -132,7 +132,7 @@ const Filter: React.FC<PropType> = (props) => {
           </div>
         </FancyModal>
       </div>
-      <div className='w-full border-b-[0.5px] border-zinc-700 py-3 pb-5 flex flex-wrap items-center gap-x-4 gap-y-5 md:gap-3 '>
+      <div className='w-full border-b-[0.5px] border-zinc-700 py-3 pb-5 flex flex-wrap items-center gap-x-2 gap-y-5 md:gap-3 '>
         <div className='flex flex-col md:max-w-[150px] '>
           <p className='font-semibold text-sm text-white'>Year</p>
           <DropdownMenu>

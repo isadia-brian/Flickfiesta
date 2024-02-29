@@ -3,7 +3,7 @@ import { ScrollArea } from "./ui/scroll-area";
 
 const FancyModal = ({ handleClose, show, children }) => {
   const showHideClassName = show
-    ? "modal display-block z-50"
+    ? "modal display-block z-50 "
     : "modal display-none";
   return (
     <div className={showHideClassName}>

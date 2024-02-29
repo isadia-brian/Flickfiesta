@@ -29,7 +29,7 @@ const MobileNav = ({ handleClick }) => {
   const pathname = usePathname();
   return (
     <div className='relative h-screen w-full'>
-      <div className='absolute h-screen w-full left-0 bg-black/90 px-8 py-7 z-[100]'>
+      <div className='absolute h-screen w-full left-0 bg-black/90 px-8 py-7 z-[1000]'>
         <div className='flex items-center justify-between'>
           <p className='text-[22px] font-bold text-red-500'>FlickFiesta</p>
 

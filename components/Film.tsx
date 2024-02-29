@@ -136,8 +136,8 @@ const Film = (props) => {
   };
 
   return (
-    <div className='relative h-full text-white px-5 md:px-0'>
-      <div className='h-[70px]  flex items-center justify-between gap-10 md:gap-0 border-b-[0.5px] border-white/20 '>
+    <div className='relative h-full text-white'>
+      <div className='flex items-center justify-between gap-10 md:gap-0 border-b-[0.5px] border-white/20 '>
         {headerButtons.map(({ title, icon }, index) => (
           <div
             className='flex items-center gap-2 cursor-pointer'
@@ -174,7 +174,7 @@ const Film = (props) => {
         </Link>
       </div>
 
-      <div className='flex gap-5 w-full h-full pt-4 pb-10 overflow-x-scroll no-scrollbar md:grid grid-cols-6 gap-y-10'>
+      <div className='flex gap-2 w-full md:w-[95vw] lg:w-full mx-auto  h-full pt-4 pb-10 md:pt-6 overflow-x-scroll no-scrollbar md:grid grid-cols-4 md:gap-x-2  gap-y-10 lg:grid-cols-6 lg:gap-'>
         {filteredData?.map((film, index) => {
           return <FilmCard film={film} dark={true} hover={true} key={index} />;
         })}
