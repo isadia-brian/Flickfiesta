@@ -1,6 +1,5 @@
 "use server";
 
-import { db } from "@/lib/db";
 import * as z from "zod";
 import { ResetSchema } from "@/helpers/schemas";
 import { getUserByEmail } from "@/data/user";

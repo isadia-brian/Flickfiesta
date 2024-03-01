@@ -22,8 +22,8 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
   const pages = 3;
 
   return (
-    <div className='relative bg-black/90 h-max w-full px-4'>
-      <div className='pt-12 md:pt-24 relative pb-16 '>
+    <div className='relative bg-black/90 w-full px-4'>
+      <div className='pt-20 md:pt-24 relative pb-16 '>
         <h1 className='text-white text-center md:text-left uppercase font-black text-lg md:text-2xl mb-9'>
           Kids
         </h1>
