@@ -15,6 +15,7 @@ export const publicRoutes = [
   "/series/serie",
   "/kids/animation",
   "/api/movies",
+  "/api/sendEmail",
 ];
 
 /**
@@ -29,6 +30,7 @@ export const authRoutes = [
   "/auth/error",
   "/auth/reset",
   "/auth/new-password",
+  "/api/sendEmail",
 ];
 
 /**

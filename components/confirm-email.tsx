@@ -13,6 +13,7 @@ import {
   Hr,
   Heading,
   Button,
+  Link,
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
 import * as React from "react";
@@ -21,7 +22,8 @@ const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "";
 
-export const ConfirmUserEmail = ({ url }) => {
+export const ConfirmUserEmail = (props) => {
+  const { url } = props;
   const previewText = "Verify email address";
   return (
     <Html>
@@ -44,14 +46,15 @@ export const ConfirmUserEmail = ({ url }) => {
               <Row>
                 <Column>
                   <Img
-                    src={`${baseUrl}/static/logo.png`}
+                    src={`/images/logo.png`}
                     width='40'
                     height='37'
                     alt='FilmSasa'
+                    className=''
                   />
                 </Column>
-                <Column>
-                  <Text className='font-black text-2xl'>FilmSasa</Text>
+                <Column className=''>
+                  <Text className='font-extrabold text-2xl'>FilmSasa</Text>
                 </Column>
               </Row>
             </Section>

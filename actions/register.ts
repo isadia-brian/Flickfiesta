@@ -8,7 +8,7 @@ import { RegisterSchema } from "@/helpers/schemas";
 import { db } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
 import { generateVerificationToken } from "@/lib/token";
-import { sendVerificationEmail } from "@/lib/mail";
+import { sendVerificationEmail } from "@/lib/email-helper";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);
@@ -37,5 +37,6 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const verificationToken = await generateVerificationToken(email);
 
   await sendVerificationEmail(verificationToken.email, verificationToken.token);
+
   return { success: "A confirmation email was sent to your email address" };
 };

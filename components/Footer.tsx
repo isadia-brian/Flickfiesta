@@ -24,7 +24,7 @@ const Footer = () => {
     <div className='text-white w-full relative px-5 md:px-0 '>
       <div className='border-[0.2px] border-white/20 md:h-[70px] border-r-0 border-l-0 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 py-5  md:items-center md:w-full md:justify-center mb-5'>
         <div>
-          <p className='text-[20px] font-bold'>FlickFiesta</p>
+          <p className='text-[20px] font-black'>FilmSasa</p>
         </div>
         <div className='flex flex-col gap-4 md:gap-0 md:flex-row md:justify-between md:items-center md:px-3'>
           {links.map(({ title, link }, index) => (

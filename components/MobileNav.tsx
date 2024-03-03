@@ -31,7 +31,7 @@ const MobileNav = ({ handleClick }) => {
     <div className='relative h-screen w-full'>
       <div className='absolute h-screen w-full left-0 bg-black/90 px-8 py-7 z-[1000]'>
         <div className='flex items-center justify-between'>
-          <p className='text-[22px] font-bold text-red-500'>FlickFiesta</p>
+          <p className='text-[22px] font-black text-red-500'>FilmSasa</p>
 
           <Button
             variant='outline'

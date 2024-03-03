@@ -1,14 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  AlignCenter,
-  AlignJustify,
-  AlignLeft,
-  ChevronDown,
-  Search,
-  X,
-} from "lucide-react";
+import { AlignJustify, ChevronDown, Search, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import UserAvatar from "./UserAvatar";
 import MobileNav from "./MobileNav";
@@ -76,7 +69,7 @@ const Navbar = () => {
         <div>
           <div className='flex items-center justify-between py-5 px-4 md:hidden'>
             <UserAvatar />
-            <p className='text-xl font-bold text-red-500'>FlickFiesta</p>
+            <p className='text-xl font-black text-red-500'>FilmSasa</p>
             <Button
               type='button'
               name='navigation-button'
@@ -92,8 +85,8 @@ const Navbar = () => {
             }`}>
             <nav className='flex items-center justify-between w-full'>
               <div>
-                <Link href='/' className='text-xl font-bold text-red-500'>
-                  FlickFiesta
+                <Link href='/' className='text-xl font-black text-red-500'>
+                  FilmSasa
                 </Link>
               </div>
 

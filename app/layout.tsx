@@ -9,7 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 // import SearchFilm from "@/components/Search";
 
 export const metadata: Metadata = {
-  title: "Flickfiesta",
+  title: "FilmSasa",
   description: "Watch Movies & Series Online",
 };
 
