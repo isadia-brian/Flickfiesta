@@ -1,6 +1,7 @@
 import { render } from "@react-email/render";
 import nodemailer from "nodemailer";
 import { ConfirmUserEmail } from "@/components/confirm-email";
+import { ResetPassword } from "@/components/reset-password";
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -17,13 +18,26 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmationLink = `flickfiesta-seven.vercel.app/auth/new-verification?token=${token}`;
+  // const confirmationLink = `flickfiesta-seven.vercel.app/auth/new-verification?token=${token}`;
+  const confirmationLink = `http://localhost:3000/auth/new-verification?token=${token}`;
 
   const mailOptions = {
     from: "FilmSasa <filmsasa.movies@gmail.com>",
     to: email,
     subject: "Verify your email",
     html: render(ConfirmUserEmail({ url: confirmationLink })),
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
+export const sendResetPasswordEmail = async (email: string, token: string) => {
+  const resetLink = `http://localhost:3000/auth/new-password?token=${token}`;
+  const mailOptions = {
+    from: "FilmSasa <filmsasa.movies@gmail.com>",
+    to: email,
+    subject: "Reset your password",
+    html: render(ResetPassword({ url: resetLink })),
   };
 
   await transporter.sendMail(mailOptions);
