@@ -44,7 +44,7 @@ export const ResetPassword = (props) => {
               <Row>
                 <Column>
                   <Img
-                    src={`/images/logo.png`}
+                    src={`${baseUrl}/images/logo.png`}
                     width='40'
                     height='37'
                     alt='FilmSasa'
@@ -76,7 +76,7 @@ export const ResetPassword = (props) => {
             </Section>
             <Section className='my-7'>
               <Text>
-                If this wasn't you, please ignore and delete this email
+                If this was not you, please ignore and delete this email.
               </Text>
             </Section>
             <Section>

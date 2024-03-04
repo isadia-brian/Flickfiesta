@@ -48,7 +48,6 @@ export const ConfirmUserEmail = (props) => {
                     width='40'
                     height='37'
                     alt='FilmSasa'
-                    className=''
                   />
                 </Column>
                 <Column>
@@ -77,7 +76,7 @@ export const ConfirmUserEmail = (props) => {
             </Section>
             <Section className='my-7'>
               <Text>
-                If this wasn't you, please ignore and delete this email
+                If this was not you, please ignore and delete this email
               </Text>
             </Section>
             <Section>
