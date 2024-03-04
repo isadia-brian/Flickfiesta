@@ -18,8 +18,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  // const confirmationLink = `flickfiesta-seven.vercel.app/auth/new-verification?token=${token}`;
-  const confirmationLink = `http://localhost:3000/auth/new-verification?token=${token}`;
+  const confirmationLink = `https://flickfiesta-seven.vercel.app/auth/new-verification?token=${token}`;
 
   const mailOptions = {
     from: "FilmSasa <filmsasa.movies@gmail.com>",
@@ -32,7 +31,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 };
 
 export const sendResetPasswordEmail = async (email: string, token: string) => {
-  const resetLink = `http://localhost:3000/auth/new-password?token=${token}`;
+  const resetLink = `https://flickfiesta-seven.vercel.app/auth/new-password?token=${token}`;
   const mailOptions = {
     from: "FilmSasa <filmsasa.movies@gmail.com>",
     to: email,
