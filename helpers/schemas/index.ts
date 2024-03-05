@@ -25,3 +25,7 @@ export const NewPasswordSchema = z.object({
     .string()
     .min(6, { message: "Password should have six or more characters" }),
 });
+
+export const SubscribeSchema = z.object({
+  email: z.string().email({ message: "Email is required" }),
+});

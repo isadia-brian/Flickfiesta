@@ -1,5 +1,4 @@
-import React from "react";
-import { discoverTV } from "@/helpers";
+import { discoverTV } from "@/actions/film";
 
 import PaginationNumbers from "@/components/PaginationNumbers";
 const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {

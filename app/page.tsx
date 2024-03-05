@@ -4,12 +4,13 @@ import Film from "@/components/Film";
 import Section from "@/components/Section";
 import RecommendedSection from "@/components/RecommendedSection";
 import Footer from "@/components/Footer";
+
 import {
   getRecommendedContent,
-  getTrendingData,
   getTrendingFilm,
   getPopularFilm,
-} from "@/helpers";
+  getTrendingData,
+} from "@/actions/film";
 
 import Preloader from "@/components/Preloader";
 
@@ -31,7 +32,7 @@ export default async function Home() {
           <Section trendingFilm={trendingFilm} />
           <Film allData={allData} />
           <RecommendedSection recommended={recommendedFilm} />
-          <div className='mt-20 w-full'>
+          <div className='mt-16 w-full'>
             <Footer />
           </div>
         </div>

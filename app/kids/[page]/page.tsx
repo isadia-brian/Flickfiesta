@@ -1,4 +1,4 @@
-import { discoverAnimations } from "@/helpers";
+import { discoverAnimations } from "@/actions/film";
 
 import PaginationNumbers from "@/components/PaginationNumbers";
 
@@ -9,7 +9,7 @@ const Page = async ({ searchParams }: { searchParams?: { page?: string } }) => {
 
   const data = await discoverAnimations(page);
 
-  const pages = data.pages;
+  const pages = 10;
 
   return (
     <div className='bg-gray-900 h-screen relative'>

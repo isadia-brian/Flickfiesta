@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useTransition } from "react";
-import { useSession } from "next-auth/react";
+
 import {
   TrendingUp,
   Heart,
@@ -41,26 +41,27 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@/helpers/schemas";
 import { login } from "@/actions/login";
 import Link from "next/link";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 const headerButtons = [
   {
     title: "Trending",
-    link: "",
+
     icon: <TrendingUp className='h-4 w-4' />,
   },
   {
     title: "Watching",
-    link: "",
+
     icon: <AlignHorizontalJustifyStart className='h-4 w-4' />,
   },
   {
     title: "Popular",
-    link: "",
+
     icon: <Flame className='h-4 w-4' />,
   },
   {
     title: "Favourites",
-    link: "",
+
     icon: <Heart className='h-4 w-4' fill='#111' />,
   },
 ];
@@ -102,7 +103,7 @@ const useFilter = (data: DataItem[], filter: string) => {
 };
 
 const Section: React.FC<PropType> = (props) => {
-  const session = useSession();
+  const user = useCurrentUser();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -118,7 +119,7 @@ const Section: React.FC<PropType> = (props) => {
   const filteredData = useFilter(data, filter);
 
   const watchingFilterClicked = () => {
-    if (session.status === "unauthenticated") {
+    if (!user) {
       setShowLogin(true);
       setFilter("");
     }
@@ -222,7 +223,8 @@ const Section: React.FC<PropType> = (props) => {
               <div className='flex w-[80vw] mx-auto md:w-full items-center my-5'>
                 <div className='h-[0.5px] bg-neutral-300 w-full' />
                 <p className='text-neutral-700 w-full  flex items-center justify-center text-xs'>
-                  or <span className='hidden md:flex'>sign in with</span> email
+                  or <span className='hidden md:flex'>sign in with</span>
+                  {""} email
                 </p>
                 <div className='h-[0.5px] bg-neutral-300 w-full' />
               </div>

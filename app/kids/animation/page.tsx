@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { getSingleMovie } from "@/helpers";
+import { getSingleMovie } from "@/actions/film";
 import { Play, Star, Youtube as Tube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

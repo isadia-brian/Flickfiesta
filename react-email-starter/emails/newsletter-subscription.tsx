@@ -6,22 +6,20 @@ import {
   Img,
   Preview,
   Section,
-  Font,
   Row,
   Column,
   Text,
   Hr,
+  Font,
   Heading,
-  Button,
 } from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
-import * as React from "react";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_URL ?? "https://flickfiesta-seven.vercel.app";
 
-export const ConfirmUserEmail = ({ url }) => {
-  const previewText = "Verify your email address";
+export const NewsLetterSubscription = () => {
+  const previewText = "Newsletter Subscription";
   return (
     <Html>
       <Head>
@@ -35,11 +33,12 @@ export const ConfirmUserEmail = ({ url }) => {
           fontStyle='normal'
         />
       </Head>
+
       <Preview>{previewText}</Preview>
       <Tailwind>
-        <Body className='bg-[#f6f8fd] my-auto px-2 '>
+        <Body className='bg-[#f6f8fd] my-auto px-2'>
           <Container
-            className=' my-[40px] bg-white px-4 py-8 rounded-md shadow-lg '
+            className=' my-[60px] bg-white px-4 py-8 rounded-md shadow-lg '
             align='left'>
             <Section align='left' className=' w-[200px]'>
               <Row>
@@ -48,11 +47,11 @@ export const ConfirmUserEmail = ({ url }) => {
                     src={`${siteUrl}/images/logo.png`}
                     width='40'
                     height='37'
-                    alt='FilmSasa'
+                    alt='Filmsasa logo'
                   />
                 </Column>
                 <Column>
-                  <Text className='font-bold text-2xl text-red-500'>
+                  <Text className='font-bold text-red-500 text-2xl'>
                     FilmSasa
                   </Text>
                 </Column>
@@ -60,28 +59,17 @@ export const ConfirmUserEmail = ({ url }) => {
             </Section>
             <Hr />
             <Heading className='mt-8 mb-3 text-3xl'>
-              Verify your email address
+              Newsletter Subscription
             </Heading>
             <Section>
               <Text>Hi,</Text>
               <Text>
-                Someone, recently used this email to create an account on
-                FilmSasa. If this was you click the button below to confirm and
-                verify your email account.
+                Hey there we are glad you recently subscribed to our newsletter.
+                You will be informed on the latest news, changes and updates on
+                FilmSasa.
               </Text>
             </Section>
-            <Section>
-              <Button
-                className='bg-orange-500 font-medium py-3 px-5 rounded-md cursor-pointer'
-                href={url}>
-                Verify Email
-              </Button>
-            </Section>
-            <Section className='my-7'>
-              <Text>
-                If this was not you, please ignore and delete this email
-              </Text>
-            </Section>
+
             <Section>
               <Text>Best,</Text>
               <Text className='-mt-4'>FilmSasa Team</Text>
@@ -93,4 +81,4 @@ export const ConfirmUserEmail = ({ url }) => {
   );
 };
 
-export default ConfirmUserEmail;
+export default NewsLetterSubscription;

@@ -1,7 +1,8 @@
 import { render } from "@react-email/render";
 import nodemailer from "nodemailer";
-import { ConfirmUserEmail } from "@/components/confirm-email";
-import { ResetPassword } from "@/components/reset-password";
+import { ConfirmUserEmail } from "@/react-email-starter/emails/confirm-email";
+import { ResetPassword } from "@/react-email-starter/emails/reset-password";
+import NewsLetterSubscription from "@/react-email-starter/emails/newsletter-subscription";
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -36,7 +37,19 @@ export const sendResetPasswordEmail = async (email: string, token: string) => {
     from: "FilmSasa <filmsasa.movies@gmail.com>",
     to: email,
     subject: "Reset your password",
+
     html: render(ResetPassword({ url: resetLink })),
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
+export const sendSubscribeEmail = async (email: string) => {
+  const mailOptions = {
+    from: "FilmSasa <filmsasa.movies@gmail.com>",
+    to: email,
+    subject: "Newsletter Subscription",
+    html: render(NewsLetterSubscription()),
   };
 
   await transporter.sendMail(mailOptions);

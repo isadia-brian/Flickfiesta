@@ -26,41 +26,6 @@ const headerButtons = [
   },
 ];
 
-const filterButtons = [
-  {
-    genre: "Action",
-    link: "",
-  },
-  {
-    genre: "Adventure",
-    link: "",
-  },
-  {
-    genre: "Animation",
-    link: "",
-  },
-  {
-    genre: "Biography",
-    link: "",
-  },
-  {
-    genre: "Crime",
-    link: "",
-  },
-  {
-    genre: "Comedy",
-    link: "",
-  },
-  {
-    genre: "Documentary",
-    link: "",
-  },
-  {
-    genre: "Drama",
-    link: "",
-  },
-];
-
 interface DataItem {
   media: "Movie" | "TV" | "Animation";
   title?: string;
@@ -100,7 +65,7 @@ const Film = (props) => {
   const { allData } = props;
   const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
   const [activeCategoryIndex, setActiveCategoryIndex] = useState<number[]>([]);
-  const [activeLabelIndex, setActiveLabelIndex] = useState<number[]>([]);
+
   const [navLink, setNavLink] = useState<string>("/movies");
   const [data, setData] = useState<DataItem[]>(allData);
 
@@ -136,8 +101,8 @@ const Film = (props) => {
   };
 
   return (
-    <div className='relative h-full text-white'>
-      <div className='flex items-center justify-between gap-10 md:gap-0 border-b-[0.5px] border-white/20 '>
+    <div className='relative  text-white'>
+      <div className='flex items-center justify-between gap-10 md:gap-0 border-b-[0.5px] border-white/20 mb-8 pb-5'>
         {headerButtons.map(({ title, icon }, index) => (
           <div
             className='flex items-center gap-2 cursor-pointer'
@@ -155,22 +120,10 @@ const Film = (props) => {
           </div>
         ))}
       </div>
-      <div className='flex items-center justify-between gap-10 pt-4 pb-6 overflow-x-scroll no-scrollbar'>
-        {filterButtons.map(({ genre, link }, index) => (
-          <Button
-            key={index}
-            className={`text-[10px] bg-zinc-800  shadow-lg rounded-full w-[100px] py-1 transition-colors duration-300 hover:bg-zinc-600 hover:shadow-2xl ${
-              activeCategoryIndex.includes(index) ? "bg-red-500" : ""
-            }`}
-            onClick={() => handleCategoryClicked(index)}>
-            {genre}
-          </Button>
-        ))}
-      </div>
 
       <div className='flex justify-end'>
         <Link href={navLink} className='text-xs underline underline-offset-2'>
-          see all
+          See all
         </Link>
       </div>
 

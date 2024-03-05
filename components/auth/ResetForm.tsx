@@ -1,18 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BeatLoader } from "react-spinners";
-import { useSearchParams } from "next/navigation";
-import { newVerification } from "@/actions/new-verification";
+
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../ui/card";
@@ -24,7 +22,7 @@ import {
   FormMessage,
   FormField,
 } from "@/components/ui/form";
-import { Label } from "../ui/label";
+
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { ResetSchema } from "@/helpers/schemas";
@@ -37,9 +35,6 @@ const ResetForm = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
-  const searchParams = useSearchParams();
-
-  const token = searchParams.get("token");
 
   const form = useForm<z.infer<typeof ResetSchema>>({
     resolver: zodResolver(ResetSchema),
